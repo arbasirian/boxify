@@ -244,27 +244,29 @@
               </div>
 
               <Box
-                display={
-                  windowWidth < 768
-                    ? "block"
-                    : windowWidth < 1024
-                    ? "flex"
-                    : "grid"
-                }
-                flexDirection={
-                  windowWidth >= 768 && windowWidth < 1024 ? "column" : "row"
-                }
-                justifyContent={
-                  windowWidth >= 768 ? "space-around" : "flex-start"
-                }
-                gridTemplateColumns={
-                  windowWidth >= 1024 ? "repeat(3, 1fr)" : "1fr"
-                }
-                gap={windowWidth >= 768 ? "20px" : "10px"}
+                display="block"
+                flexDirection="row"
+                justifyContent="flex-start"
+                gridTemplateColumns="1fr"
+                gap="10px"
                 backgroundColor="#e0f2f1"
                 padding="20px"
                 borderRadius="8px"
                 minHeight="100px"
+                tablet={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-around",
+                  gridTemplateColumns: "repeat(2, 1fr)",
+                  gap: "20px",
+                }}
+                desktop={{
+                  display: "grid",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  gap: "30px",
+                }}
               >
                 <div className="grid-item">Responsive Item 1</div>
                 <div className="grid-item">Responsive Item 2</div>
@@ -308,11 +310,14 @@
 
               <Box
                 display="flex"
-                flexDirection={windowWidth < 768 ? "column" : "row"}
+                flexDirection="column"
                 gap="20px"
                 backgroundColor="#fafafa"
                 padding="20px"
                 borderRadius="8px"
+                tablet={{
+                  flexDirection: "row",
+                }}
               >
                 <Box
                   flex="1"

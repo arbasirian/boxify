@@ -41,24 +41,22 @@ function App() {
 
 ## Responsive Props
 
-The library supports responsive values for all CSS properties:
+The library supports responsive values through breakpoint-specific override objects. The approach is **mobile-first**, meaning you specify base styles and then override them for larger screens:
 
 ```tsx
 <Box
-  display={{
-    mobile: "block",
-    tablet: "flex",
-    desktop: "grid",
+  display="block"
+  padding="10px"
+  backgroundColor="lightblue"
+  tablet={{
+    display: "flex",
+    padding: "20px",
+    justifyContent: "space-around"
   }}
-  width={{
-    mobile: "100%",
-    tablet: "50%",
-    desktop: "33.333%",
-  }}
-  padding={{
-    mobile: "10px",
-    tablet: "20px",
-    desktop: "30px",
+  desktop={{
+    display: "grid",
+    padding: "30px",
+    gridTemplateColumns: "repeat(3, 1fr)"
   }}
 >
   Responsive content
@@ -69,9 +67,9 @@ The library supports responsive values for all CSS properties:
 
 Default breakpoints (can be customized):
 
-- `mobile`: 0px+
-- `tablet`: 768px+
-- `desktop`: 1024px+
+- `mobile`: 0px+ (base styles)
+- `tablet`: 768px+ (tablet overrides)
+- `desktop`: 1024px+ (desktop overrides)
 
 ## Display Props
 
@@ -191,19 +189,21 @@ All standard CSS properties with responsive support
 
 ```tsx
 <Box
-  display={{
-    mobile: "block",
-    tablet: "flex",
-    desktop: "grid",
+  display="block"
+  padding="10px"
+  gap="10px"
+  backgroundColor="lightgray"
+  tablet={{
+    display: "flex",
+    padding: "20px",
+    gap: "20px",
+    gridTemplateColumns: "repeat(3, 1fr)",
   }}
-  gridTemplateColumns={{
-    tablet: "repeat(3, 1fr)",
-    desktop: "repeat(4, 1fr)",
-  }}
-  gap={{
-    mobile: "10px",
-    tablet: "20px",
-    desktop: "30px",
+  desktop={{
+    display: "grid",
+    padding: "30px",
+    gap: "30px",
+    gridTemplateColumns: "repeat(4, 1fr)",
   }}
 >
   <Box>Item 1</Box>

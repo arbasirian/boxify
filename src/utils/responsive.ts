@@ -1,4 +1,4 @@
-import { Breakpoint, ResponsiveValue } from "../types";
+import { Breakpoint, ResponsiveOverrides } from "../types";
 
 // Default breakpoint values (can be customized)
 export const DEFAULT_BREAKPOINTS: Record<Breakpoint, number> = {
@@ -18,44 +18,43 @@ export const getCurrentBreakpoint = (): Breakpoint => {
   return "mobile";
 };
 
-// Get the appropriate value for the current breakpoint
-export const getResponsiveValue = <T>(
-  value: ResponsiveValue<T>,
+// Merge responsive overrides with base styles
+export const mergeResponsiveStyles = (
+  baseStyles: React.CSSProperties,
+  responsiveOverrides: ResponsiveOverrides,
   currentBreakpoint: Breakpoint = getCurrentBreakpoint()
-): T | undefined => {
-  if (typeof value === "object" && value !== null && !Array.isArray(value)) {
-    const responsiveValue = value as Partial<Record<Breakpoint, T>>;
-    // Find the closest breakpoint value (current or smaller)
-    const breakpoints: Breakpoint[] = ["mobile", "tablet", "desktop"];
-    const currentIndex = breakpoints.indexOf(currentBreakpoint);
+): React.CSSProperties => {
+  const styles = { ...baseStyles };
 
-    for (let i = currentIndex; i >= 0; i--) {
-      const breakpoint = breakpoints[i];
-      if (responsiveValue[breakpoint] !== undefined) {
-        return responsiveValue[breakpoint];
-      }
-    }
-
-    return undefined;
+  // Apply responsive overrides based on current breakpoint
+  if (currentBreakpoint === "desktop" && responsiveOverrides.desktop) {
+    Object.assign(styles, responsiveOverrides.desktop);
+  }
+  
+  if (currentBreakpoint === "tablet" && responsiveOverrides.tablet) {
+    Object.assign(styles, responsiveOverrides.tablet);
+  }
+  
+  if (currentBreakpoint === "mobile" && responsiveOverrides.mobile) {
+    Object.assign(styles, responsiveOverrides.mobile);
   }
 
-  return value;
+  return styles;
 };
 
-// Generate CSS custom properties for responsive values
+// Generate CSS custom properties for responsive overrides
 export const generateResponsiveCSS = (
-  props: Record<string, ResponsiveValue<any>>,
+  responsiveOverrides: ResponsiveOverrides,
   breakpoints: Record<Breakpoint, number> = DEFAULT_BREAKPOINTS
 ): Record<string, string> => {
   const cssVars: Record<string, string> = {};
 
-  Object.entries(props).forEach(([prop, value]) => {
-    if (typeof value === "object" && value !== null) {
-      // Create CSS custom properties for each breakpoint
-      Object.entries(value).forEach(([breakpoint, breakpointValue]) => {
-        if (breakpointValue !== undefined) {
+  Object.entries(responsiveOverrides).forEach(([breakpoint, overrides]) => {
+    if (overrides) {
+      Object.entries(overrides).forEach(([prop, value]) => {
+        if (value !== undefined) {
           const cssVarName = `--${prop}-${breakpoint}`;
-          cssVars[cssVarName] = String(breakpointValue);
+          cssVars[cssVarName] = String(value);
         }
       });
     }
@@ -64,19 +63,19 @@ export const generateResponsiveCSS = (
   return cssVars;
 };
 
-// Convert responsive values to CSS media queries
+// Convert responsive overrides to CSS media queries
 export const generateMediaQueries = (
-  props: Record<string, ResponsiveValue<any>>,
+  responsiveOverrides: ResponsiveOverrides,
   breakpoints: Record<Breakpoint, number> = DEFAULT_BREAKPOINTS
 ): string => {
   let css = "";
 
-  Object.entries(props).forEach(([prop, value]) => {
-    if (typeof value === "object" && value !== null) {
-      Object.entries(value).forEach(([breakpoint, breakpointValue]) => {
-        if (breakpointValue !== undefined && breakpoint !== "mobile") {
-          const minWidth = breakpoints[breakpoint as Breakpoint];
-          css += `@media (min-width: ${minWidth}px) { .${prop}-${breakpoint} { ${prop}: ${breakpointValue}; } }`;
+  Object.entries(responsiveOverrides).forEach(([breakpoint, overrides]) => {
+    if (overrides && breakpoint !== "mobile") {
+      const minWidth = breakpoints[breakpoint as Breakpoint];
+      Object.entries(overrides).forEach(([prop, value]) => {
+        if (value !== undefined) {
+          css += `@media (min-width: ${minWidth}px) { .${prop}-${breakpoint} { ${prop}: ${value}; } }`;
         }
       });
     }

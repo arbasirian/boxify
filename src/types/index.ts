@@ -3,8 +3,12 @@ import React from "react";
 // Responsive breakpoint types
 export type Breakpoint = "mobile" | "tablet" | "desktop";
 
-// Responsive value type that can be a single value or breakpoint-specific values
-export type ResponsiveValue<T> = T | Partial<Record<Breakpoint, T>>;
+// Responsive overrides for specific breakpoints
+export interface ResponsiveOverrides {
+  mobile?: Partial<CSSProps>;
+  tablet?: Partial<CSSProps>;
+  desktop?: Partial<CSSProps>;
+}
 
 // CSS Display property values
 export type DisplayValue =
@@ -32,88 +36,79 @@ export interface BaseProps {
   as?: keyof JSX.IntrinsicElements;
 }
 
-// Display-specific props
-export interface DisplayProps {
-  display?: ResponsiveValue<DisplayValue>;
-}
-
 // CSS properties that can be applied
 export interface CSSProps {
+  // Display
+  display?: DisplayValue;
+
   // Layout
-  position?: ResponsiveValue<React.CSSProperties["position"]>;
-  top?: ResponsiveValue<React.CSSProperties["top"]>;
-  right?: ResponsiveValue<React.CSSProperties["right"]>;
-  bottom?: ResponsiveValue<React.CSSProperties["bottom"]>;
-  left?: ResponsiveValue<React.CSSProperties["left"]>;
-  zIndex?: ResponsiveValue<React.CSSProperties["zIndex"]>;
+  position?: React.CSSProperties["position"];
+  top?: React.CSSProperties["top"];
+  right?: React.CSSProperties["right"];
+  bottom?: React.CSSProperties["bottom"];
+  left?: React.CSSProperties["left"];
+  zIndex?: React.CSSProperties["zIndex"];
 
   // Box Model
-  width?: ResponsiveValue<React.CSSProperties["width"]>;
-  height?: ResponsiveValue<React.CSSProperties["height"]>;
-  minWidth?: ResponsiveValue<React.CSSProperties["minWidth"]>;
-  minHeight?: ResponsiveValue<React.CSSProperties["minHeight"]>;
-  maxWidth?: ResponsiveValue<React.CSSProperties["maxWidth"]>;
-  maxHeight?: ResponsiveValue<React.CSSProperties["maxHeight"]>;
+  width?: React.CSSProperties["width"];
+  height?: React.CSSProperties["height"];
+  minWidth?: React.CSSProperties["minWidth"];
+  minHeight?: React.CSSProperties["minHeight"];
+  maxWidth?: React.CSSProperties["maxWidth"];
+  maxHeight?: React.CSSProperties["maxHeight"];
 
   // Spacing
-  margin?: ResponsiveValue<React.CSSProperties["margin"]>;
-  marginTop?: ResponsiveValue<React.CSSProperties["marginTop"]>;
-  marginRight?: ResponsiveValue<React.CSSProperties["marginRight"]>;
-  marginBottom?: ResponsiveValue<React.CSSProperties["marginBottom"]>;
-  marginLeft?: ResponsiveValue<React.CSSProperties["marginLeft"]>;
+  margin?: React.CSSProperties["margin"];
+  marginTop?: React.CSSProperties["marginTop"];
+  marginRight?: React.CSSProperties["marginRight"];
+  marginBottom?: React.CSSProperties["marginBottom"];
+  marginLeft?: React.CSSProperties["marginLeft"];
 
-  padding?: ResponsiveValue<React.CSSProperties["padding"]>;
-  paddingTop?: ResponsiveValue<React.CSSProperties["paddingTop"]>;
-  paddingRight?: ResponsiveValue<React.CSSProperties["paddingRight"]>;
-  paddingBottom?: ResponsiveValue<React.CSSProperties["paddingBottom"]>;
-  paddingLeft?: ResponsiveValue<React.CSSProperties["paddingLeft"]>;
+  padding?: React.CSSProperties["padding"];
+  paddingTop?: React.CSSProperties["paddingTop"];
+  paddingRight?: React.CSSProperties["paddingRight"];
+  paddingBottom?: React.CSSProperties["paddingBottom"];
+  paddingLeft?: React.CSSProperties["paddingLeft"];
 
   // Border
-  border?: ResponsiveValue<React.CSSProperties["border"]>;
-  borderRadius?: ResponsiveValue<React.CSSProperties["borderRadius"]>;
+  border?: React.CSSProperties["border"];
+  borderRadius?: React.CSSProperties["borderRadius"];
 
   // Background
-  backgroundColor?: ResponsiveValue<React.CSSProperties["backgroundColor"]>;
-  backgroundImage?: ResponsiveValue<React.CSSProperties["backgroundImage"]>;
+  backgroundColor?: React.CSSProperties["backgroundColor"];
+  backgroundImage?: React.CSSProperties["backgroundImage"];
 
   // Typography
-  color?: ResponsiveValue<React.CSSProperties["color"]>;
-  fontSize?: ResponsiveValue<React.CSSProperties["fontSize"]>;
-  fontWeight?: ResponsiveValue<React.CSSProperties["fontWeight"]>;
-  textAlign?: ResponsiveValue<React.CSSProperties["textAlign"]>;
+  color?: React.CSSProperties["color"];
+  fontSize?: React.CSSProperties["fontSize"];
+  fontWeight?: React.CSSProperties["fontWeight"];
+  textAlign?: React.CSSProperties["textAlign"];
 
   // Flexbox
-  flexDirection?: ResponsiveValue<React.CSSProperties["flexDirection"]>;
-  justifyContent?: ResponsiveValue<React.CSSProperties["justifyContent"]>;
-  alignItems?: ResponsiveValue<React.CSSProperties["alignItems"]>;
-  flexWrap?: ResponsiveValue<React.CSSProperties["flexWrap"]>;
-  flex?: ResponsiveValue<React.CSSProperties["flex"]>;
+  flexDirection?: React.CSSProperties["flexDirection"];
+  justifyContent?: React.CSSProperties["justifyContent"];
+  alignItems?: React.CSSProperties["alignItems"];
+  flexWrap?: React.CSSProperties["flexWrap"];
+  flex?: React.CSSProperties["flex"];
 
   // Grid
-  gridTemplateColumns?: ResponsiveValue<
-    React.CSSProperties["gridTemplateColumns"]
-  >;
-  gridTemplateRows?: ResponsiveValue<React.CSSProperties["gridTemplateRows"]>;
-  gap?: ResponsiveValue<React.CSSProperties["gap"]>;
+  gridTemplateColumns?: React.CSSProperties["gridTemplateColumns"];
+  gridTemplateRows?: React.CSSProperties["gridTemplateRows"];
+  gap?: React.CSSProperties["gap"];
 
   // Transform
-  transform?: ResponsiveValue<React.CSSProperties["transform"]>;
-  transition?: ResponsiveValue<React.CSSProperties["transition"]>;
+  transform?: React.CSSProperties["transform"];
+  transition?: React.CSSProperties["transition"];
 
   // Overflow
-  overflow?: ResponsiveValue<React.CSSProperties["overflow"]>;
-  overflowX?: ResponsiveValue<React.CSSProperties["overflowX"]>;
-  overflowY?: ResponsiveValue<React.CSSProperties["overflowY"]>;
+  overflow?: React.CSSProperties["overflow"];
+  overflowX?: React.CSSProperties["overflowX"];
+  overflowY?: React.CSSProperties["overflowY"];
 
   // Additional CSS properties
-  boxShadow?: ResponsiveValue<React.CSSProperties["boxShadow"]>;
-  cursor?: ResponsiveValue<React.CSSProperties["cursor"]>;
+  boxShadow?: React.CSSProperties["boxShadow"];
+  cursor?: React.CSSProperties["cursor"];
 }
 
 // Combined props for the Box component
-export interface BoxProps extends BaseProps, DisplayProps, CSSProps {}
-
-// Utility type for extracting responsive values
-export type ExtractResponsiveValue<T> = T extends ResponsiveValue<infer U>
-  ? U
-  : never;
+export interface BoxProps extends BaseProps, CSSProps, ResponsiveOverrides {}

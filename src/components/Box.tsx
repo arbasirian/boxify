@@ -1,20 +1,12 @@
 import React, { forwardRef, useMemo } from "react";
-import { BoxProps, ResponsiveValue } from "../types";
-import { getResponsiveValue, generateResponsiveCSS } from "../utils/responsive";
+import { BoxProps } from "../types";
+import { mergeResponsiveStyles, generateResponsiveCSS } from "../utils/responsive";
 
 // CSS-in-JS style generator
 const generateStyles = (props: BoxProps): React.CSSProperties => {
   const styles: React.CSSProperties = {};
 
-  // Handle display prop specifically (as requested)
-  if (props.display) {
-    const displayValue = getResponsiveValue(props.display);
-    if (displayValue) {
-      styles.display = displayValue;
-    }
-  }
-
-  // Handle all other CSS props
+  // Handle all CSS props (base styles)
   const cssProps = [
     "position",
     "top",
@@ -63,42 +55,46 @@ const generateStyles = (props: BoxProps): React.CSSProperties => {
     "cursor",
   ] as const;
 
+  // Apply base styles
   cssProps.forEach((prop) => {
     const value = props[prop];
     if (value !== undefined) {
-      const resolvedValue = getResponsiveValue(value);
-      if (resolvedValue !== undefined) {
-        (styles as any)[prop] = resolvedValue;
-      }
+      (styles as any)[prop] = value;
     }
   });
+
+  // Apply responsive overrides
+  const responsiveOverrides = {
+    mobile: props.mobile,
+    tablet: props.tablet,
+    desktop: props.desktop,
+  };
+
+  const finalStyles = mergeResponsiveStyles(styles, responsiveOverrides);
 
   // Merge with custom style prop
   if (props.style) {
-    Object.assign(styles, props.style);
+    Object.assign(finalStyles, props.style);
   }
 
-  return styles;
+  return finalStyles;
 };
 
-// Generate CSS custom properties for responsive values
+// Generate CSS custom properties for responsive overrides
 const generateCSSVars = (props: BoxProps): React.CSSProperties => {
-  const responsiveProps: Record<string, ResponsiveValue<any>> = {};
+  const responsiveOverrides = {
+    mobile: props.mobile,
+    tablet: props.tablet,
+    desktop: props.desktop,
+  };
 
-  // Collect all responsive props
-  Object.entries(props).forEach(([key, value]) => {
-    if (typeof value === "object" && value !== null && !Array.isArray(value)) {
-      responsiveProps[key] = value;
-    }
-  });
-
-  return generateResponsiveCSS(responsiveProps);
+  return generateResponsiveCSS(responsiveOverrides);
 };
 
 export const Box = forwardRef<HTMLElement, BoxProps>(
-  ({ children, className = "", as = "div", ...props }, ref) => {
-    const styles = useMemo(() => generateStyles(props), [props]);
-    const cssVars = useMemo(() => generateCSSVars(props), [props]);
+  ({ children, className = "", as = "div", mobile, tablet, desktop, ...props }, ref) => {
+    const styles = useMemo(() => generateStyles(props), [props, mobile, tablet, desktop]);
+    const cssVars = useMemo(() => generateCSSVars(props), [props, mobile, tablet, desktop]);
 
     // Merge styles with CSS custom properties
     const finalStyles = { ...styles, ...cssVars };
@@ -107,22 +103,33 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
     const responsiveClasses = useMemo(() => {
       const classes: string[] = [];
 
-      Object.entries(props).forEach(([prop, value]) => {
-        if (
-          typeof value === "object" &&
-          value !== null &&
-          !Array.isArray(value)
-        ) {
-          Object.entries(value).forEach(([breakpoint, breakpointValue]) => {
-            if (breakpointValue !== undefined && breakpoint !== "mobile") {
-              classes.push(`${prop}-${breakpoint}-${breakpointValue}`);
-            }
-          });
-        }
-      });
+      // Add classes for responsive overrides
+      if (mobile) {
+        Object.entries(mobile).forEach(([prop, value]) => {
+          if (value !== undefined) {
+            classes.push(`${prop}-mobile-${value}`);
+          }
+        });
+      }
+
+      if (tablet) {
+        Object.entries(tablet).forEach(([prop, value]) => {
+          if (value !== undefined) {
+            classes.push(`${prop}-tablet-${value}`);
+          }
+        });
+      }
+
+      if (desktop) {
+        Object.entries(desktop).forEach(([prop, value]) => {
+          if (value !== undefined) {
+            classes.push(`${prop}-desktop-${value}`);
+          }
+        });
+      }
 
       return classes.join(" ");
-    }, [props]);
+    }, [mobile, tablet, desktop]);
 
     const finalClassName = `${className} ${responsiveClasses}`.trim();
 
