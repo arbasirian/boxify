@@ -2,7 +2,6 @@
 export type {
   Breakpoint,
   ResponsiveOverrides,
-  DisplayValue,
   BaseProps,
   CSSProps,
   BoxProps,
@@ -19,3 +18,31 @@ export {
 
 // Export components
 export { Box } from "./components/Box";
+
+// New atomic CSS utilities
+export {
+  getStaticCSSClass,
+  getDynamicCSSClass,
+  generateCSSVariables,
+  generateStaticClasses,
+  getGeneratedRules,
+  flushRules,
+} from "./utils/styleCache";
+
+// SSR utilities
+export {
+  initSSR,
+  addSSRRule,
+  getSSRRules,
+  flushSSRRules,
+  generateSSRStylesheet,
+  isSSR,
+} from "./utils/ssr";
+
+// Responsive atomic utilities
+export {
+  generateResponsiveStaticClasses,
+  generateResponsiveDynamicClasses,
+  generateResponsiveCSSVariables,
+  insertResponsiveMediaQueries,
+} from "./utils/responsiveAtomic";

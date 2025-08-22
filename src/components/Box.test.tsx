@@ -11,11 +11,10 @@ describe("Box Component", () => {
   it("renders with responsive display props", () => {
     render(
       <Box
-        display={{
-          xs: "block",
-          sm: "flex",
-          md: "grid",
-        }}
+        display="block"
+        mobile={{ display: "block" }}
+        tablet={{ display: "flex" }}
+        desktop={{ display: "grid" }}
       >
         Responsive content
       </Box>
@@ -25,13 +24,13 @@ describe("Box Component", () => {
 
   it("renders as custom element", () => {
     render(
-      <Box as="button" display="inline-block">
-        Button
+      <Box as="span" display="inline-block">
+        Span content
       </Box>
     );
-    const button = screen.getByRole("button");
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveTextContent("Button");
+    const span = screen.getByText("Span content");
+    expect(span).toBeInTheDocument();
+    expect(span.tagName.toLowerCase()).toBe("span");
   });
 
   it("applies custom styles", () => {

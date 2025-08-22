@@ -10,24 +10,6 @@ export interface ResponsiveOverrides {
   desktop?: Partial<CSSProps>;
 }
 
-// CSS Display property values
-export type DisplayValue =
-  | "block"
-  | "inline"
-  | "inline-block"
-  | "flex"
-  | "inline-flex"
-  | "grid"
-  | "inline-grid"
-  | "table"
-  | "table-row"
-  | "table-cell"
-  | "contents"
-  | "list-item"
-  | "none"
-  | "initial"
-  | "inherit";
-
 // Base props that all components will extend
 export interface BaseProps {
   children?: React.ReactNode;
@@ -39,7 +21,7 @@ export interface BaseProps {
 // CSS properties that can be applied (excluding HTML attributes to avoid conflicts)
 export interface CSSProps {
   // Display
-  display?: DisplayValue;
+  display?: React.CSSProperties["display"];
 
   // Layout
   position?: React.CSSProperties["position"];
@@ -111,4 +93,8 @@ export interface CSSProps {
 }
 
 // Combined props for the Box component
-export interface BoxProps extends BaseProps, CSSProps, ResponsiveOverrides, Omit<React.HTMLAttributes<HTMLElement>, keyof CSSProps> {}
+export interface BoxProps
+  extends BaseProps,
+    CSSProps,
+    ResponsiveOverrides,
+    Omit<React.HTMLAttributes<HTMLElement>, keyof CSSProps> {}

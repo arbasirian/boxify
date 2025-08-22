@@ -1,99 +1,17 @@
-import React, { forwardRef, useMemo, memo } from "react";
+import React, { forwardRef, useMemo, memo, useEffect } from "react";
 import { BoxProps } from "../types";
 import {
-  mergeResponsiveStyles,
-  generateResponsiveCSS,
-} from "../utils/responsive";
-
-// Memoized CSS props array to prevent recreation on every render
-const CSS_PROPS = [
-  "position",
-  "top",
-  "right",
-  "bottom",
-  "left",
-  "zIndex",
-  "width",
-  "height",
-  "minWidth",
-  "minHeight",
-  "maxWidth",
-  "maxHeight",
-  "margin",
-  "marginTop",
-  "marginRight",
-  "marginBottom",
-  "marginLeft",
-  "padding",
-  "paddingTop",
-  "paddingRight",
-  "paddingBottom",
-  "paddingLeft",
-  "border",
-  "borderRadius",
-  "backgroundColor",
-  "backgroundImage",
-  "fontSize",
-  "fontWeight",
-  "textAlign",
-  "flexDirection",
-  "justifyContent",
-  "alignItems",
-  "flexWrap",
-  "flex",
-  "gridTemplateColumns",
-  "gridTemplateRows",
-  "gap",
-  "transform",
-  "transition",
-  "overflow",
-  "overflowX",
-  "overflowY",
-  "boxShadow",
-  "cursor",
-  "htmlFor",
-] as const;
-
-// CSS-in-JS style generator
-const generateStyles = (props: BoxProps): React.CSSProperties => {
-  const styles: React.CSSProperties = {};
-
-  // Apply base styles
-  for (let i = 0; i < CSS_PROPS.length; i++) {
-    const prop = CSS_PROPS[i];
-    const value = props[prop];
-    if (value !== undefined) {
-      (styles as Record<string, unknown>)[prop] = value;
-    }
-  }
-
-  // Apply responsive overrides
-  const responsiveOverrides = {
-    mobile: props.mobile,
-    tablet: props.tablet,
-    desktop: props.desktop,
-  };
-
-  const finalStyles = mergeResponsiveStyles(styles, responsiveOverrides);
-
-  // Merge with custom style prop
-  if (props.style) {
-    Object.assign(finalStyles, props.style);
-  }
-
-  return finalStyles;
-};
-
-// Generate CSS custom properties for responsive overrides
-const generateCSSVars = (props: BoxProps): React.CSSProperties => {
-  const responsiveOverrides = {
-    mobile: props.mobile,
-    tablet: props.tablet,
-    desktop: props.desktop,
-  };
-
-  return generateResponsiveCSS(responsiveOverrides);
-};
+  getDynamicCSSClass,
+  generateCSSVariables,
+  generateStaticClasses,
+  isBrowser,
+} from "../utils/styleCache";
+import {
+  generateResponsiveStaticClasses,
+  generateResponsiveDynamicClasses,
+  generateResponsiveCSSVariables,
+  insertResponsiveMediaQueries,
+} from "../utils/responsiveAtomic";
 
 // Type for the allowed HTML elements
 type AllowedElement = HTMLDivElement | HTMLSpanElement | HTMLLabelElement;
@@ -113,55 +31,108 @@ const BoxComponent = forwardRef<AllowedElement, BoxProps>(
     },
     ref
   ) => {
-    // Memoize styles generation
-    const styles = useMemo(
-      () => generateStyles({ ...props, style }),
-      [props, style]
-    );
+    // Memoize static CSS classes generation
+    const staticClasses = useMemo(() => generateStaticClasses(props), [props]);
 
-    // Memoize CSS variables generation
-    const cssVars = useMemo(
-      () => generateCSSVars({ mobile, tablet, desktop }),
+    // Memoize dynamic CSS classes generation
+    const dynamicClasses = useMemo(() => {
+      const classes: string[] = [];
+      const dynamicProps = [
+        "width",
+        "height",
+        "minWidth",
+        "minHeight",
+        "maxWidth",
+        "maxHeight",
+      ] as const;
+
+      for (const prop of dynamicProps) {
+        if (props[prop] !== undefined) {
+          classes.push(getDynamicCSSClass(prop));
+        }
+      }
+
+      return classes;
+    }, [
+      props.width,
+      props.height,
+      props.minWidth,
+      props.minHeight,
+      props.maxWidth,
+      props.maxHeight,
+    ]);
+
+    // Memoize responsive static classes
+    const responsiveStaticClasses = useMemo(
+      () => generateResponsiveStaticClasses({ mobile, tablet, desktop }),
       [mobile, tablet, desktop]
     );
 
-    // Memoize responsive classes generation
-    const responsiveClasses = useMemo(() => {
-      if (!mobile && !tablet && !desktop) return "";
+    // Memoize responsive dynamic classes
+    const responsiveDynamicClasses = useMemo(
+      () => generateResponsiveDynamicClasses({ mobile, tablet, desktop }),
+      [mobile, tablet, desktop]
+    );
 
-      const classes: string[] = [];
+    // Memoize CSS variables for dynamic values
+    const cssVariables = useMemo(
+      () => generateCSSVariables(props),
+      [
+        props.width,
+        props.height,
+        props.minWidth,
+        props.minHeight,
+        props.maxWidth,
+        props.maxHeight,
+      ]
+    );
 
-      // Helper function to add classes for a breakpoint
-      const addBreakpointClasses = (
-        breakpoint: string,
-        overrides: Record<string, unknown>
-      ) => {
-        if (overrides) {
-          for (const [prop, value] of Object.entries(overrides)) {
-            if (value !== undefined) {
-              classes.push(`${prop}-${breakpoint}-${value}`);
-            }
-          }
-        }
-      };
-
-      addBreakpointClasses("mobile", mobile || {});
-      addBreakpointClasses("tablet", tablet || {});
-      addBreakpointClasses("desktop", desktop || {});
-
-      return classes.join(" ");
-    }, [mobile, tablet, desktop]);
+    // Memoize responsive CSS variables
+    const responsiveCSSVariables = useMemo(
+      () => generateResponsiveCSSVariables({ mobile, tablet, desktop }),
+      [mobile, tablet, desktop]
+    );
 
     // Memoize final className
     const finalClassName = useMemo(() => {
-      if (!responsiveClasses) return className;
-      return `${className} ${responsiveClasses}`.trim();
-    }, [className, responsiveClasses]);
+      const allClasses = [
+        ...staticClasses,
+        ...dynamicClasses,
+        ...responsiveStaticClasses,
+        ...responsiveDynamicClasses,
+        className,
+      ].filter(Boolean);
 
-    // Memoize final styles
+      return allClasses.join(" ");
+    }, [
+      staticClasses,
+      dynamicClasses,
+      responsiveStaticClasses,
+      responsiveDynamicClasses,
+      className,
+    ]);
+
+    // Memoize final styles (only CSS variables and user-passed style)
     const finalStyles = useMemo(() => {
-      return { ...styles, ...cssVars };
-    }, [styles, cssVars]);
+      const styles: React.CSSProperties = {
+        ...cssVariables,
+        ...responsiveCSSVariables,
+      };
+
+      if (style) {
+        Object.assign(styles, style);
+      }
+
+      return styles;
+    }, [cssVariables, responsiveCSSVariables, style]);
+
+    // Insert responsive media queries into stylesheet
+    useEffect(() => {
+      if (!isBrowser) return;
+
+      const responsiveOverrides = { mobile, tablet, desktop };
+      insertResponsiveMediaQueries(responsiveOverrides);
+    }, [mobile, tablet, desktop]);
 
     // Memoize element props to prevent unnecessary re-renders
     const elementProps = useMemo(
