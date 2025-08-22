@@ -2,39 +2,43 @@ name: Publish to npm
 
 on:
   push:
-    branches:
-      - main
+    branches: [main] # ok to keep if you want CI to run here, but publish below only runs on tags
     tags:
       - "v*"
+
+permissions:
+  contents: write # for release creation
+  id-token: write # for npm provenance (optional but recommended)
 
 jobs:
   publish:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
-          registry-url: "https://registry.npmjs.org"
-          cache: "npm"
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+          cache: npm
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests
-        run: npm test
-
       - name: Type check
         run: npm run type-check
 
-      - name: Lint code
+      - name: Lint
         run: npm run lint
 
-      - name: Build package
+      - name: Test
+        run: npm test
+
+      - name: Build
         run: npm run build
 
       - name: Check bundle size
@@ -42,17 +46,19 @@ jobs:
 
       - name: Publish to npm
         if: startsWith(github.ref, 'refs/tags/')
-        run: npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # use an npm Automation token
+        run: |
+          npm whoami
+          npm publish --access public --provenance
 
-      - name: Create Release
+      - name: Create GitHub Release
         if: startsWith(github.ref, 'refs/tags/')
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
           draft: false
           prerelease: false
+          files: |
+            dist/**
