@@ -56,8 +56,7 @@ export const mergeResponsiveStyles = (
 
 // Generate CSS custom properties for responsive overrides
 export const generateResponsiveCSS = (
-  responsiveOverrides: ResponsiveOverrides,
-  breakpoints: Record<Breakpoint, number> = DEFAULT_BREAKPOINTS
+  responsiveOverrides: ResponsiveOverrides
 ): Record<string, string> => {
   // Early return if no responsive overrides
   if (
@@ -91,8 +90,7 @@ export const generateResponsiveCSS = (
 
 // Convert responsive overrides to CSS media queries
 export const generateMediaQueries = (
-  responsiveOverrides: ResponsiveOverrides,
-  breakpoints: Record<Breakpoint, number> = DEFAULT_BREAKPOINTS
+  responsiveOverrides: ResponsiveOverrides
 ): string => {
   // Early return if no responsive overrides
   if (!responsiveOverrides.tablet && !responsiveOverrides.desktop) {
@@ -105,11 +103,11 @@ export const generateMediaQueries = (
   for (let i = 1; i < BREAKPOINTS.length; i++) {
     const breakpoint = BREAKPOINTS[i];
     const overrides = responsiveOverrides[breakpoint];
-
+    
     if (overrides) {
-      const minWidth = breakpoints[breakpoint];
+      const minWidth = DEFAULT_BREAKPOINTS[breakpoint];
       const entries = Object.entries(overrides);
-
+      
       for (let j = 0; j < entries.length; j++) {
         const [prop, value] = entries[j];
         if (value !== undefined) {

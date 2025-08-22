@@ -1,4 +1,4 @@
-import React, { forwardRef, useMemo, useCallback, memo } from "react";
+import React, { forwardRef, useMemo, memo } from "react";
 import { BoxProps } from "../types";
 import {
   mergeResponsiveStyles,
@@ -63,7 +63,7 @@ const generateStyles = (props: BoxProps): React.CSSProperties => {
     const prop = CSS_PROPS[i];
     const value = props[prop];
     if (value !== undefined) {
-      (styles as any)[prop] = value;
+      (styles as Record<string, unknown>)[prop] = value;
     }
   }
 
@@ -132,7 +132,7 @@ const BoxComponent = forwardRef<AllowedElement, BoxProps>(
       const classes: string[] = [];
 
       // Helper function to add classes for a breakpoint
-      const addBreakpointClasses = (breakpoint: string, overrides: any) => {
+      const addBreakpointClasses = (breakpoint: string, overrides: Record<string, unknown>) => {
         if (overrides) {
           for (const [prop, value] of Object.entries(overrides)) {
             if (value !== undefined) {
@@ -142,9 +142,9 @@ const BoxComponent = forwardRef<AllowedElement, BoxProps>(
         }
       };
 
-      addBreakpointClasses("mobile", mobile);
-      addBreakpointClasses("tablet", tablet);
-      addBreakpointClasses("desktop", desktop);
+      addBreakpointClasses("mobile", mobile || {});
+      addBreakpointClasses("tablet", tablet || {});
+      addBreakpointClasses("desktop", desktop || {});
 
       return classes.join(" ");
     }, [mobile, tablet, desktop]);
@@ -161,16 +161,13 @@ const BoxComponent = forwardRef<AllowedElement, BoxProps>(
     }, [styles, cssVars]);
 
     // Memoize element props to prevent unnecessary re-renders
-    const elementProps = useMemo(
-      () => ({
-        ref,
-        className: finalClassName,
-        style: finalStyles,
-        ...props,
-        children,
-      }),
-      [ref, finalClassName, finalStyles, props, children]
-    );
+    const elementProps = useMemo(() => ({
+      ref,
+      className: finalClassName,
+      style: finalStyles,
+      ...props,
+      children,
+    }), [ref, finalClassName, finalStyles, props, children]);
 
     return React.createElement(as, elementProps);
   }
