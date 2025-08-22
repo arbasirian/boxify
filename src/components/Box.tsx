@@ -37,7 +37,6 @@ const generateStyles = (props: BoxProps): React.CSSProperties => {
     "borderRadius",
     "backgroundColor",
     "backgroundImage",
-    "color",
     "fontSize",
     "fontWeight",
     "textAlign",
@@ -56,6 +55,7 @@ const generateStyles = (props: BoxProps): React.CSSProperties => {
     "overflowY",
     "boxShadow",
     "cursor",
+    "htmlFor",
   ] as const;
 
   // Apply base styles
@@ -94,18 +94,21 @@ const generateCSSVars = (props: BoxProps): React.CSSProperties => {
   return generateResponsiveCSS(responsiveOverrides);
 };
 
-export const Box = forwardRef<HTMLElement, BoxProps>(
+// Type for the allowed HTML elements
+type AllowedElement = HTMLDivElement | HTMLSpanElement | HTMLLabelElement;
+
+export const Box = forwardRef<AllowedElement, BoxProps>(
   (
-    { 
-      children, 
-      className = "", 
-      as = "div", 
-      mobile, 
-      tablet, 
-      desktop, 
+    {
+      children,
+      className = "",
+      as = "div",
+      mobile,
+      tablet,
+      desktop,
       style,
-      ...props 
-    }, 
+      ...props
+    },
     ref
   ) => {
     const styles = useMemo(

@@ -132,7 +132,7 @@ export const BasicUsageExample: React.FC = () => {
         <h2>Custom Element Rendering</h2>
 
         <Box
-          as="button"
+          as="span"
           display="inline-block"
           backgroundColor="blue"
           color="white"
@@ -141,47 +141,28 @@ export const BasicUsageExample: React.FC = () => {
           border="none"
           cursor="pointer"
           margin="10px"
-          onClick={() => alert("Button clicked!")}
-          type="button"
-          disabled={false}
         >
-          Button Element
+          Span Element
         </Box>
 
         <Box
-          as="section"
+          as="label"
           display="block"
           backgroundColor="lightsteelblue"
           padding="15px"
           margin="10px 0"
           borderRadius="5px"
-          id="custom-section"
-          data-testid="demo-section"
-          aria-label="Demo section"
+          id="custom-label"
+          data-testid="demo-label"
+          aria-label="Demo label"
         >
-          Section Element
+          Label Element
         </Box>
       </section>
 
       {/* HTML Attributes Examples */}
       <section>
         <h2>HTML Attributes Support</h2>
-
-        <Box
-          as="input"
-          type="text"
-          placeholder="Enter your name"
-          defaultValue="John Doe"
-          padding="10px"
-          border="1px solid #ccc"
-          borderRadius="4px"
-          width="200px"
-          id="name-input"
-          name="fullName"
-          required
-          aria-describedby="name-help"
-          data-cy="name-input"
-        />
 
         <Box
           as="label"
@@ -195,7 +176,7 @@ export const BasicUsageExample: React.FC = () => {
         </Box>
 
         <Box
-          as="small"
+          as="span"
           id="name-help"
           color="#666"
           fontSize="12px"
@@ -204,21 +185,18 @@ export const BasicUsageExample: React.FC = () => {
         </Box>
 
         <Box
-          as="a"
-          href="#"
-          display="inline-block"
+          as="div"
+          id="demo-container"
+          data-testid="demo-container"
+          aria-label="Demo container"
+          display="block"
           margin="20px 0"
-          padding="10px 15px"
-          backgroundColor="#007acc"
-          color="white"
-          textDecoration="none"
+          padding="15px"
+          backgroundColor="#f0f0f0"
           borderRadius="4px"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="External link to documentation"
-          data-external="true"
+          border="1px solid #ddd"
         >
-          View Documentation
+          This is a div container with various HTML attributes
         </Box>
       </section>
     </div>

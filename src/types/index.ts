@@ -33,7 +33,7 @@ export interface BaseProps {
   children?: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
-  as?: keyof JSX.IntrinsicElements;
+  as?: "div" | "span" | "label";
 }
 
 // CSS properties that can be applied (excluding HTML attributes to avoid conflicts)
@@ -107,6 +107,7 @@ export interface CSSProps {
   // Additional CSS properties
   boxShadow?: React.CSSProperties["boxShadow"];
   cursor?: React.CSSProperties["cursor"];
+  htmlFor?: string;
 }
 
 // Combined props for the Box component

@@ -147,7 +147,7 @@ The library starts with comprehensive display property support:
 - `children`: React children
 - `className`: Additional CSS classes
 - `style`: Custom inline styles
-- `as`: HTML element to render (default: 'div')
+- `as`: HTML element to render - only accepts `"div"`, `"span"`, or `"label"` (default: `"div"`)
 
 ### Display Props
 
@@ -183,43 +183,44 @@ The Box component accepts **all standard HTML attributes** including:
 ### HTML Attributes Examples
 
 ```tsx
-// Button with event handlers and form attributes
+// Div with accessibility and data attributes
 <Box
-  as="button"
-  onClick={() => handleClick()}
-  type="submit"
-  disabled={isLoading}
-  display="inline-block"
-  padding="10px 20px"
+  as="div"
+  id="container"
+  data-testid="main-container"
+  aria-label="Main content container"
+  display="block"
+  padding="20px"
+  backgroundColor="#f5f5f5"
 >
-  Submit Form
+  Content container
 </Box>
 
-// Input with form and accessibility attributes
+// Span with event handlers and styling
 <Box
-  as="input"
-  type="text"
-  placeholder="Enter your name"
-  required
-  id="name-input"
-  aria-describedby="name-help"
-  data-testid="name-input"
-  padding="10px"
-  border="1px solid #ccc"
-/>
-
-// Link with navigation attributes
-<Box
-  as="a"
-  href="/docs"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Open documentation"
+  as="span"
+  onClick={() => handleClick()}
+  onMouseEnter={() => handleHover()}
   display="inline-block"
-  color="blue"
-  textDecoration="underline"
+  padding="10px"
+  backgroundColor="blue"
+  color="white"
+  cursor="pointer"
 >
-  View Docs
+  Clickable span
+</Box>
+
+// Label with form and accessibility attributes
+<Box
+  as="label"
+  htmlFor="input-field"
+  display="block"
+  margin="10px 0"
+  fontWeight="bold"
+  color="#333"
+  aria-required="true"
+>
+  Required Field
 </Box>
 ```
 
