@@ -175,12 +175,7 @@ export const BasicUsageExample: React.FC = () => {
           Full Name
         </Box>
 
-        <Box
-          as="span"
-          id="name-help"
-          color="#666"
-          fontSize="12px"
-        >
+        <Box as="span" id="name-help" color="#666" fontSize="12px">
           Please enter your full name as it appears on your ID
         </Box>
 

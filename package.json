@@ -11,10 +11,15 @@
   ],
   "scripts": {
     "build": "rollup -c",
+    "build:analyze": "rollup -c --config-option analyze=true",
     "dev": "rollup -c -w",
     "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "lint": "eslint src --ext .ts,.tsx",
-    "type-check": "tsc --noEmit"
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "type-check": "tsc --noEmit",
+    "size": "npm run build && node -e \"console.log('Bundle sizes:'); console.log('CJS:', require('fs').statSync('dist/index.js').size + ' bytes'); console.log('ESM:', require('fs').statSync('dist/index.esm.js').size + ' bytes');\""
   },
   "peerDependencies": {
     "react": ">=16.8.0",

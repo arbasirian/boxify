@@ -1,70 +1,71 @@
-import React, { forwardRef, useMemo } from "react";
+import React, { forwardRef, useMemo, useCallback, memo } from "react";
 import { BoxProps } from "../types";
 import {
   mergeResponsiveStyles,
   generateResponsiveCSS,
 } from "../utils/responsive";
 
+// Memoized CSS props array to prevent recreation on every render
+const CSS_PROPS = [
+  "position",
+  "top",
+  "right",
+  "bottom",
+  "left",
+  "zIndex",
+  "width",
+  "height",
+  "minWidth",
+  "minHeight",
+  "maxWidth",
+  "maxHeight",
+  "margin",
+  "marginTop",
+  "marginRight",
+  "marginBottom",
+  "marginLeft",
+  "padding",
+  "paddingTop",
+  "paddingRight",
+  "paddingBottom",
+  "paddingLeft",
+  "border",
+  "borderRadius",
+  "backgroundColor",
+  "backgroundImage",
+  "fontSize",
+  "fontWeight",
+  "textAlign",
+  "flexDirection",
+  "justifyContent",
+  "alignItems",
+  "flexWrap",
+  "flex",
+  "gridTemplateColumns",
+  "gridTemplateRows",
+  "gap",
+  "transform",
+  "transition",
+  "overflow",
+  "overflowX",
+  "overflowY",
+  "boxShadow",
+  "cursor",
+  "htmlFor",
+] as const;
+
 // CSS-in-JS style generator
 const generateStyles = (props: BoxProps): React.CSSProperties => {
   const styles: React.CSSProperties = {};
 
-  // Handle all CSS props (base styles)
-  const cssProps = [
-    "position",
-    "top",
-    "right",
-    "bottom",
-    "left",
-    "zIndex",
-    "width",
-    "height",
-    "minWidth",
-    "minHeight",
-    "maxWidth",
-    "maxHeight",
-    "margin",
-    "marginTop",
-    "marginRight",
-    "marginBottom",
-    "marginLeft",
-    "padding",
-    "paddingTop",
-    "paddingRight",
-    "paddingBottom",
-    "paddingLeft",
-    "border",
-    "borderRadius",
-    "backgroundColor",
-    "backgroundImage",
-    "fontSize",
-    "fontWeight",
-    "textAlign",
-    "flexDirection",
-    "justifyContent",
-    "alignItems",
-    "flexWrap",
-    "flex",
-    "gridTemplateColumns",
-    "gridTemplateRows",
-    "gap",
-    "transform",
-    "transition",
-    "overflow",
-    "overflowX",
-    "overflowY",
-    "boxShadow",
-    "cursor",
-    "htmlFor",
-  ] as const;
-
   // Apply base styles
-  cssProps.forEach((prop) => {
+  for (let i = 0; i < CSS_PROPS.length; i++) {
+    const prop = CSS_PROPS[i];
     const value = props[prop];
     if (value !== undefined) {
       (styles as any)[prop] = value;
     }
-  });
+  }
 
   // Apply responsive overrides
   const responsiveOverrides = {
@@ -97,7 +98,8 @@ const generateCSSVars = (props: BoxProps): React.CSSProperties => {
 // Type for the allowed HTML elements
 type AllowedElement = HTMLDivElement | HTMLSpanElement | HTMLLabelElement;
 
-export const Box = forwardRef<AllowedElement, BoxProps>(
+// Memoized Box component for better performance
+const BoxComponent = forwardRef<AllowedElement, BoxProps>(
   (
     {
       children,
@@ -111,60 +113,67 @@ export const Box = forwardRef<AllowedElement, BoxProps>(
     },
     ref
   ) => {
+    // Memoize styles generation
     const styles = useMemo(
       () => generateStyles({ ...props, style }),
       [props, style]
     );
+
+    // Memoize CSS variables generation
     const cssVars = useMemo(
       () => generateCSSVars({ mobile, tablet, desktop }),
       [mobile, tablet, desktop]
     );
 
-    // Merge styles with CSS custom properties
-    const finalStyles = { ...styles, ...cssVars };
-
-    // Generate responsive classes for CSS-based responsive behavior
+    // Memoize responsive classes generation
     const responsiveClasses = useMemo(() => {
+      if (!mobile && !tablet && !desktop) return "";
+
       const classes: string[] = [];
 
-      // Add classes for responsive overrides
-      if (mobile) {
-        Object.entries(mobile).forEach(([prop, value]) => {
-          if (value !== undefined) {
-            classes.push(`${prop}-mobile-${value}`);
+      // Helper function to add classes for a breakpoint
+      const addBreakpointClasses = (breakpoint: string, overrides: any) => {
+        if (overrides) {
+          for (const [prop, value] of Object.entries(overrides)) {
+            if (value !== undefined) {
+              classes.push(`${prop}-${breakpoint}-${value}`);
+            }
           }
-        });
-      }
+        }
+      };
 
-      if (tablet) {
-        Object.entries(tablet).forEach(([prop, value]) => {
-          if (value !== undefined) {
-            classes.push(`${prop}-tablet-${value}`);
-          }
-        });
-      }
-
-      if (desktop) {
-        Object.entries(desktop).forEach(([prop, value]) => {
-          if (value !== undefined) {
-            classes.push(`${prop}-desktop-${value}`);
-          }
-        });
-      }
+      addBreakpointClasses("mobile", mobile);
+      addBreakpointClasses("tablet", tablet);
+      addBreakpointClasses("desktop", desktop);
 
       return classes.join(" ");
     }, [mobile, tablet, desktop]);
 
-    const finalClassName = `${className} ${responsiveClasses}`.trim();
+    // Memoize final className
+    const finalClassName = useMemo(() => {
+      if (!responsiveClasses) return className;
+      return `${className} ${responsiveClasses}`.trim();
+    }, [className, responsiveClasses]);
 
-    return React.createElement(as, {
+    // Memoize final styles
+    const finalStyles = useMemo(() => {
+      return { ...styles, ...cssVars };
+    }, [styles, cssVars]);
+
+    // Memoize element props to prevent unnecessary re-renders
+    const elementProps = useMemo(() => ({
       ref,
       className: finalClassName,
       style: finalStyles,
       ...props,
       children,
-    });
+    }), [ref, finalClassName, finalStyles, props, children]);
+
+    return React.createElement(as, elementProps);
   }
 );
 
-Box.displayName = "Box";
+BoxComponent.displayName = "Box";
+
+// Export memoized version for better performance
+export const Box = memo(BoxComponent);
