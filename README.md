@@ -3,7 +3,7 @@
 A lightweight, performant React component library for building responsive layouts with CSS-in-JS styling.
 
 [![npm version](https://badge.fury.io/js/%40ar.basirian%2Freact.svg)](https://badge.fury.io/js/%40ar.basirian%2Freact)
-[![Bundle size](https://img.shields.io/bundlephobia/min/@ar.basirian/react)](https://bundlephobia.com/result?p=@ar.basirian/react)
+[![Bundle size](https://img.shields.io/bundlephobia/min/boxify-react)](https://bundlephobia.com/result?p=boxify-react)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## ✨ Features
@@ -19,36 +19,31 @@ A lightweight, performant React component library for building responsive layout
 ## 📦 Installation
 
 ```bash
-npm install @ar.basirian/react
+npm install boxify-react
 ```
 
 ```bash
-yarn add @ar.basirian/react
+yarn add boxify-react
 ```
 
 ```bash
-pnpm add @ar.basirian/react
+pnpm add boxify-react
 ```
 
 ## 🚀 Quick Start
 
 ```tsx
-import { Box } from '@ar.basirian/react';
+import { Box } from "boxify-react";
 
 function App() {
   return (
-    <Box 
-      display="flex" 
-      padding="20px" 
+    <Box
+      display="flex"
+      padding="20px"
       backgroundColor="#f0f0f0"
-      desktop={{ padding: '40px' }}
+      desktop={{ padding: "40px" }}
     >
-      <Box 
-        as="span" 
-        fontSize="16px" 
-        color="#333"
-        tablet={{ fontSize: '18px' }}
-      >
+      <Box as="span" fontSize="16px" color="#333" tablet={{ fontSize: "18px" }}>
         Hello, Boxify!
       </Box>
     </Box>
@@ -65,17 +60,15 @@ Boxify uses a mobile-first approach with breakpoint-specific overrides:
   // Base styles (mobile-first)
   padding="16px"
   fontSize="14px"
-  
   // Tablet overrides (768px+)
   tablet={{
-    padding: '24px',
-    fontSize: '16px'
+    padding: "24px",
+    fontSize: "16px",
   }}
-  
   // Desktop overrides (1024px+)
   desktop={{
-    padding: '32px',
-    fontSize: '18px'
+    padding: "32px",
+    fontSize: "18px",
   }}
 >
   Responsive content
@@ -99,43 +92,49 @@ The Box component supports all major CSS properties:
 ## 🔧 Component Props
 
 ### Base Props
+
 - `children`: React nodes to render
 - `className`: Additional CSS classes
 - `style`: Custom inline styles
 - `as`: Element type (`"div"`, `"span"`, `"label"`)
 
 ### CSS Props
+
 All CSS properties are supported as props with proper TypeScript types.
 
 ### Responsive Props
+
 - `mobile`: Mobile-specific style overrides
 - `tablet`: Tablet-specific style overrides (768px+)
 - `desktop`: Desktop-specific style overrides (1024px+)
 
 ### HTML Attributes
+
 All standard HTML attributes are supported and will be passed to the underlying DOM element.
 
 ## 📚 Advanced Usage
 
 ### Custom Breakpoints
+
 ```tsx
-import { DEFAULT_BREAKPOINTS } from '@ar.basirian/react';
+import { DEFAULT_BREAKPOINTS } from "boxify-react";
 
 // Customize breakpoints
 const customBreakpoints = {
   ...DEFAULT_BREAKPOINTS,
-  tablet: 600,  // Custom tablet breakpoint
-  desktop: 900  // Custom desktop breakpoint
+  tablet: 600, // Custom tablet breakpoint
+  desktop: 900, // Custom desktop breakpoint
 };
 ```
 
 ### Responsive Utilities
+
 ```tsx
-import { 
-  getCurrentBreakpoint, 
+import {
+  getCurrentBreakpoint,
   mergeResponsiveStyles,
-  generateResponsiveCSS 
-} from '@ar.basirian/react';
+  generateResponsiveCSS,
+} from "boxify-react";
 
 // Get current breakpoint
 const breakpoint = getCurrentBreakpoint();
@@ -148,18 +147,20 @@ const cssVars = generateResponsiveCSS(responsiveOverrides);
 ```
 
 ### Performance Optimization
+
 ```tsx
-import { useMemo } from 'react';
+import { useMemo } from "react";
 
 // Memoize responsive props to prevent unnecessary re-renders
-const responsiveProps = useMemo(() => ({
-  tablet: { padding: '24px' },
-  desktop: { padding: '32px' }
-}), []);
+const responsiveProps = useMemo(
+  () => ({
+    tablet: { padding: "24px" },
+    desktop: { padding: "32px" },
+  }),
+  []
+);
 
-<Box {...responsiveProps}>
-  Optimized content
-</Box>
+<Box {...responsiveProps}>Optimized content</Box>;
 ```
 
 ## 🧪 Testing

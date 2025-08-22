@@ -5,27 +5,32 @@ This guide explains how to publish the Boxify React library to npm, including bo
 ## 🚀 **Publishing Options**
 
 ### **Option 1: Automated Publishing (Recommended)**
+
 - **GitHub Actions**: Automatically publish on git tags
 - **CI/CD Pipeline**: Full testing and validation before publish
 - **Zero Configuration**: Set up once, publish automatically
 
 ### **Option 2: Manual Publishing**
+
 - **Direct npm publish**: Manual control over when to publish
 - **Local validation**: Run checks locally before publishing
 
 ## 🔄 **Automated Publishing with GitHub Actions**
 
 ### **Setup Required**
+
 1. **NPM_TOKEN Secret**: Add your npm access token to GitHub Secrets
 2. **Workflow Files**: Already configured in `.github/workflows/`
 3. **Tag-based Publishing**: Only publishes when you create git tags
 
 ### **How It Works**
+
 1. **Push to main**: Runs CI checks only
 2. **Create git tag**: Triggers full CI + publish workflow
 3. **Automatic**: Tests, builds, publishes, creates GitHub release
 
 ### **Publishing Commands**
+
 ```bash
 # Create and push a tag to trigger publishing
 git tag v0.1.0
@@ -37,6 +42,7 @@ git push origin v0.1.0
 ```
 
 ### **Workflow Steps**
+
 1. ✅ **CI Checks**: Test, build, lint, type-check
 2. ✅ **Build Package**: Create production bundle
 3. ✅ **Publish to npm**: Automatic npm publication
@@ -45,22 +51,27 @@ git push origin v0.1.0
 ## 📋 **Prerequisites**
 
 ### 1. npm Account
+
 - Create an npm account at [npmjs.com](https://www.npmjs.com)
 - Verify your email address
 - Enable two-factor authentication (recommended)
 
 ### 2. npm Login
+
 ```bash
 npm login
 ```
 
 ### **Package Scope**
-Since we're using `@ar.basirian/react`, you'll be publishing under your personal npm scope:
-- This will be published as `@ar.basirian/react`
+
+Since we're using `boxify-react`, you'll be publishing under your personal npm scope:
+
+- This will be published as `boxify-react`
 - No organization setup required
 - Package will be public and accessible to everyone
 
 ### 4. GitHub Actions Setup
+
 - **NPM_TOKEN**: Add to GitHub repository secrets
 - **Workflows**: Already configured in `.github/workflows/`
 - **Branch Protection**: Recommended for main branch
@@ -68,7 +79,9 @@ Since we're using `@ar.basirian/react`, you'll be publishing under your personal
 ## 🔐 **GitHub Actions Setup**
 
 ### **Required Secret: NPM_TOKEN**
+
 1. **Create npm token:**
+
    ```bash
    npm login
    npm token create --read-only
@@ -81,6 +94,7 @@ Since we're using `@ar.basirian/react`, you'll be publishing under your personal
    - Value: Your npm access token
 
 ### **Workflow Files**
+
 - **`ci.yml`**: Continuous integration on every push
 - **`publish.yml`**: Publishing workflow on tags
 - **`security.yml`**: Security audits and dependency checks
@@ -88,6 +102,7 @@ Since we're using `@ar.basirian/react`, you'll be publishing under your personal
 ## 🚀 **Publishing Process**
 
 ### **Automated (Recommended)**
+
 ```bash
 # 1. Make your changes and commit
 git add .
@@ -106,6 +121,7 @@ git push origin v0.1.0
 ```
 
 ### **Manual Publishing**
+
 ```bash
 # Clean and build
 npm run clean
@@ -124,6 +140,7 @@ npm publish --access public
 ## 🔄 **Update Process**
 
 ### **Automated Updates**
+
 ```bash
 # 1. Update version in package.json
 npm version patch    # 0.1.0 → 0.1.1
@@ -138,6 +155,7 @@ git push origin --tags
 ```
 
 ### **Manual Updates**
+
 ```bash
 # Update version
 npm version patch
@@ -155,7 +173,7 @@ npm publish --access public
 
 ```json
 {
-  "name": "@ar.basirian/react",
+  "name": "boxify-react",
   "version": "0.1.0",
   "description": "A lightweight, performant React component library...",
   "main": "dist/index.js",
@@ -169,7 +187,9 @@ npm publish --access public
 ```
 
 ### .npmignore
+
 Controls what gets excluded from the published package:
+
 - Source files (`src/`)
 - Development files (`.eslintrc.js`, `jest.config.js`)
 - Test files (`*.test.ts`, `*.spec.ts`)
@@ -178,7 +198,9 @@ Controls what gets excluded from the published package:
 ## 🧪 **Pre-publish Checks**
 
 ### **Automated Checks (GitHub Actions)**
+
 The workflows automatically run:
+
 - ✅ Build (`npm run build`)
 - ✅ Test (`npm test`)
 - ✅ Type check (`npm run type-check`)
@@ -186,6 +208,7 @@ The workflows automatically run:
 - ✅ Bundle size check (`npm run size`)
 
 ### **Manual Checks**
+
 ```bash
 # Build
 npm run build
@@ -209,18 +232,22 @@ npm pack --dry-run
 ## 🔐 **Security**
 
 ### **Two-Factor Authentication**
+
 Enable 2FA on your npm account for security.
 
 ### **Access Control**
+
 - Use `"access": "public"` for public packages
-- Scoped packages (`@ar.basirian/react`) are public by default
+- Scoped packages (`boxify-react`) are public by default
 
 ### **Personal Scope**
-- `@ar.basirian/react` uses your personal npm scope
+
+- `boxify-react` uses your personal npm scope
 - No organization permissions required
 - Package will be publicly accessible
 
 ### **GitHub Actions Security**
+
 - NPM_TOKEN is encrypted and secure
 - Workflows run in isolated environments
 - No sensitive data exposed in logs
@@ -228,20 +255,24 @@ Enable 2FA on your npm account for security.
 ## 📊 **Post-Publish**
 
 ### **1. Monitor Downloads**
+
 ```bash
-npm stats @ar.basirian/react
+npm stats boxify-react
 ```
 
 ### **2. Check Bundle Size**
-- [Bundlephobia](https://bundlephobia.com/result?p=@ar.basirian/react)
+
+- [Bundlephobia](https://bundlephobia.com/result?p=boxify-react)
 - [npm bundle size](https://bundlephobia.com/)
 
 ### **3. Update Documentation**
+
 - Update GitHub repository
 - Update README badges
 - Update any external references
 
 ### **4. Monitor GitHub Actions**
+
 - Check Actions tab for workflow status
 - Review logs for any issues
 - Verify npm publication success
@@ -251,14 +282,16 @@ npm stats @ar.basirian/react
 ### **Common Issues**
 
 #### **1. Package Name Already Taken**
+
 ```bash
 # Check if name is available
-npm search @ar.basirian/react
+npm search boxify-react
 
 # The name should be available under your scope
 ```
 
 #### **2. Permission Denied**
+
 ```bash
 # Check npm user
 npm whoami
@@ -268,6 +301,7 @@ npm login
 ```
 
 #### **3. Build Failures**
+
 ```bash
 # Clean and rebuild
 npm run clean
@@ -278,6 +312,7 @@ npm run type-check
 ```
 
 #### **4. GitHub Actions Failures**
+
 - Check NPM_TOKEN secret is set
 - Verify workflow file syntax
 - Check for Node.js version compatibility
@@ -286,37 +321,45 @@ npm run type-check
 ### **Error Messages**
 
 #### "You must be logged in to publish packages"
+
 ```bash
 npm login
 ```
 
 #### "Package name must be lowercase"
+
 Check package.json name field.
 
 #### "Access denied"
+
 Use `--access public` for scoped packages.
 
 #### "Workflow failed"
+
 Check GitHub Actions tab for detailed error logs.
 
 ## 📈 **Best Practices**
 
 ### **1. Semantic Versioning**
+
 - `patch`: Bug fixes (0.1.0 → 0.1.1)
 - `minor`: New features (0.1.0 → 0.2.0)
 - `major`: Breaking changes (0.1.0 → 1.0.0)
 
 ### **2. Tag Management**
+
 - Use annotated tags: `git tag -a v1.0.0 -m "Release 1.0.0"`
 - Tag only for releases, not every commit
 - Follow semantic versioning conventions
 
 ### **3. Automated Workflows**
+
 - Let GitHub Actions handle CI/CD
 - Focus on code quality, not manual processes
 - Use tags to trigger releases
 
 ### **4. Documentation**
+
 - Keep README updated
 - Include examples
 - Document breaking changes
@@ -333,4 +376,4 @@ Check GitHub Actions tab for detailed error logs.
 
 ---
 
-*This guide covers both manual and automated npm publishing with GitHub Actions.*
+_This guide covers both manual and automated npm publishing with GitHub Actions._
