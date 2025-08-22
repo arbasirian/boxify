@@ -1,6 +1,9 @@
 import React, { forwardRef, useMemo } from "react";
 import { BoxProps } from "../types";
-import { mergeResponsiveStyles, generateResponsiveCSS } from "../utils/responsive";
+import {
+  mergeResponsiveStyles,
+  generateResponsiveCSS,
+} from "../utils/responsive";
 
 // CSS-in-JS style generator
 const generateStyles = (props: BoxProps): React.CSSProperties => {
@@ -92,9 +95,27 @@ const generateCSSVars = (props: BoxProps): React.CSSProperties => {
 };
 
 export const Box = forwardRef<HTMLElement, BoxProps>(
-  ({ children, className = "", as = "div", mobile, tablet, desktop, ...props }, ref) => {
-    const styles = useMemo(() => generateStyles(props), [props, mobile, tablet, desktop]);
-    const cssVars = useMemo(() => generateCSSVars(props), [props, mobile, tablet, desktop]);
+  (
+    { 
+      children, 
+      className = "", 
+      as = "div", 
+      mobile, 
+      tablet, 
+      desktop, 
+      style,
+      ...props 
+    }, 
+    ref
+  ) => {
+    const styles = useMemo(
+      () => generateStyles({ ...props, style }),
+      [props, style]
+    );
+    const cssVars = useMemo(
+      () => generateCSSVars({ mobile, tablet, desktop }),
+      [mobile, tablet, desktop]
+    );
 
     // Merge styles with CSS custom properties
     const finalStyles = { ...styles, ...cssVars };
@@ -137,6 +158,7 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
       ref,
       className: finalClassName,
       style: finalStyles,
+      ...props,
       children,
     });
   }

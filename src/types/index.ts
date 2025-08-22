@@ -36,7 +36,7 @@ export interface BaseProps {
   as?: keyof JSX.IntrinsicElements;
 }
 
-// CSS properties that can be applied
+// CSS properties that can be applied (excluding HTML attributes to avoid conflicts)
 export interface CSSProps {
   // Display
   display?: DisplayValue;
@@ -79,7 +79,6 @@ export interface CSSProps {
   backgroundImage?: React.CSSProperties["backgroundImage"];
 
   // Typography
-  color?: React.CSSProperties["color"];
   fontSize?: React.CSSProperties["fontSize"];
   fontWeight?: React.CSSProperties["fontWeight"];
   textAlign?: React.CSSProperties["textAlign"];
@@ -111,4 +110,4 @@ export interface CSSProps {
 }
 
 // Combined props for the Box component
-export interface BoxProps extends BaseProps, CSSProps, ResponsiveOverrides {}
+export interface BoxProps extends BaseProps, CSSProps, ResponsiveOverrides, Omit<React.HTMLAttributes<HTMLElement>, keyof CSSProps> {}

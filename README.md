@@ -157,6 +157,15 @@ The library starts with comprehensive display property support:
 
 All standard CSS properties with responsive support
 
+### HTML Attributes
+The Box component accepts **all standard HTML attributes** including:
+- **Event handlers**: `onClick`, `onChange`, `onSubmit`, etc.
+- **Form attributes**: `type`, `name`, `value`, `required`, `disabled`, etc.
+- **Accessibility**: `id`, `aria-*`, `role`, etc.
+- **Data attributes**: `data-*`, `data-testid`, etc.
+- **Link attributes**: `href`, `target`, `rel`, etc.
+- **Input attributes**: `placeholder`, `defaultValue`, `htmlFor`, etc.
+
 ## Advanced Usage
 
 ### Custom Element Rendering
@@ -168,6 +177,49 @@ All standard CSS properties with responsive support
 
 <Box as="button" display="inline-block">
   Button element
+</Box>
+```
+
+### HTML Attributes Examples
+
+```tsx
+// Button with event handlers and form attributes
+<Box
+  as="button"
+  onClick={() => handleClick()}
+  type="submit"
+  disabled={isLoading}
+  display="inline-block"
+  padding="10px 20px"
+>
+  Submit Form
+</Box>
+
+// Input with form and accessibility attributes
+<Box
+  as="input"
+  type="text"
+  placeholder="Enter your name"
+  required
+  id="name-input"
+  aria-describedby="name-help"
+  data-testid="name-input"
+  padding="10px"
+  border="1px solid #ccc"
+/>
+
+// Link with navigation attributes
+<Box
+  as="a"
+  href="/docs"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Open documentation"
+  display="inline-block"
+  color="blue"
+  textDecoration="underline"
+>
+  View Docs
 </Box>
 ```
 

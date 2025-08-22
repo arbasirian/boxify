@@ -141,6 +141,9 @@ export const BasicUsageExample: React.FC = () => {
           border="none"
           cursor="pointer"
           margin="10px"
+          onClick={() => alert("Button clicked!")}
+          type="button"
+          disabled={false}
         >
           Button Element
         </Box>
@@ -152,8 +155,70 @@ export const BasicUsageExample: React.FC = () => {
           padding="15px"
           margin="10px 0"
           borderRadius="5px"
+          id="custom-section"
+          data-testid="demo-section"
+          aria-label="Demo section"
         >
           Section Element
+        </Box>
+      </section>
+
+      {/* HTML Attributes Examples */}
+      <section>
+        <h2>HTML Attributes Support</h2>
+
+        <Box
+          as="input"
+          type="text"
+          placeholder="Enter your name"
+          defaultValue="John Doe"
+          padding="10px"
+          border="1px solid #ccc"
+          borderRadius="4px"
+          width="200px"
+          id="name-input"
+          name="fullName"
+          required
+          aria-describedby="name-help"
+          data-cy="name-input"
+        />
+
+        <Box
+          as="label"
+          htmlFor="name-input"
+          display="block"
+          margin="10px 0 5px 0"
+          fontWeight="bold"
+          color="#333"
+        >
+          Full Name
+        </Box>
+
+        <Box
+          as="small"
+          id="name-help"
+          color="#666"
+          fontSize="12px"
+        >
+          Please enter your full name as it appears on your ID
+        </Box>
+
+        <Box
+          as="a"
+          href="#"
+          display="inline-block"
+          margin="20px 0"
+          padding="10px 15px"
+          backgroundColor="#007acc"
+          color="white"
+          textDecoration="none"
+          borderRadius="4px"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="External link to documentation"
+          data-external="true"
+        >
+          View Documentation
         </Box>
       </section>
     </div>
