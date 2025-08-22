@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boxify Demo</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+
+      .demo-section {
+        margin-bottom: 40px;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .demo-title {
+        color: #333;
+        border-bottom: 2px solid #007acc;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+
+      .responsive-demo {
+        border: 2px dashed #007acc;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .grid-item {
+        background: #e3f2fd;
+        padding: 15px;
+        border-radius: 4px;
+        text-align: center;
+        border: 1px solid #2196f3;
+      }
+
+      .flex-item {
+        background: #f3e5f5;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #9c27b0;
+        margin: 5px;
+      }
+
+      .breakpoint-info {
+        background: #fff3e0;
+        padding: 10px;
+        border-radius: 4px;
+        margin: 10px 0;
+        border-left: 4px solid #ff9800;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { useState, useEffect } = React;
+
+      // Simple Box component implementation for demo
+      const Box = ({
+        children,
+        display = "block",
+        backgroundColor,
+        color,
+        padding,
+        margin,
+        width,
+        height,
+        flexDirection,
+        justifyContent,
+        alignItems,
+        gap,
+        gridTemplateColumns,
+        borderRadius,
+        border,
+        style = {},
+        as: Component = "div",
+        ...props
+      }) => {
+        const styles = {
+          display,
+          backgroundColor,
+          color,
+          padding,
+          margin,
+          width,
+          height,
+          flexDirection,
+          justifyContent,
+          alignItems,
+          gap,
+          gridTemplateColumns,
+          borderRadius,
+          border,
+          ...style,
+        };
+
+        return React.createElement(
+          Component,
+          { style: styles, ...props },
+          children
+        );
+      };
+
+      const DemoApp = () => {
+        const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+        useEffect(() => {
+          const handleResize = () => setWindowWidth(window.innerWidth);
+          window.addEventListener("resize", handleResize);
+          return () => window.removeEventListener("resize", handleResize);
+        }, []);
+
+        const getBreakpoint = () => {
+          if (windowWidth >= 1024) return "desktop";
+          if (windowWidth >= 768) return "tablet";
+          return "mobile";
+        };
+
+        return (
+          <div>
+            <h1 style={{ textAlign: "center", color: "#333" }}>
+              🎯 Boxify Demo
+            </h1>
+
+            <div className="breakpoint-info">
+              <strong>Current Breakpoint:</strong> {getBreakpoint()}
+              <br />
+              <strong>Window Width:</strong> {windowWidth}px
+            </div>
+
+            <div className="demo-section">
+              <h2 className="demo-title">1. Basic Display Properties</h2>
+
+              <Box
+                display="block"
+                backgroundColor="#e3f2fd"
+                padding="15px"
+                margin="10px 0"
+                borderRadius="4px"
+              >
+                Block Display - Takes full width
+              </Box>
+
+              <Box
+                display="inline-block"
+                backgroundColor="#f3e5f5"
+                padding="10px 20px"
+                margin="10px"
+                borderRadius="20px"
+              >
+                Inline Block
+              </Box>
+
+              <Box
+                display="inline-block"
+                backgroundColor="#e8f5e8"
+                padding="10px 20px"
+                margin="10px"
+                borderRadius="20px"
+              >
+                Another Inline Block
+              </Box>
+            </div>
+
+            <div className="demo-section">
+              <h2 className="demo-title">2. Flexbox Display</h2>
+
+              <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                backgroundColor="#fff3e0"
+                padding="20px"
+                borderRadius="8px"
+              >
+                <div className="flex-item">Flex Item 1</div>
+                <div className="flex-item">Flex Item 2</div>
+                <div className="flex-item">Flex Item 3</div>
+              </Box>
+
+              <Box
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                backgroundColor="#fce4ec"
+                padding="20px"
+                margin="20px 0"
+                borderRadius="8px"
+              >
+                <div className="flex-item">Column Item 1</div>
+                <div className="flex-item">Column Item 2</div>
+                <div className="flex-item">Column Item 3</div>
+              </Box>
+            </div>
+
+            <div className="demo-section">
+              <h2 className="demo-title">3. Grid Display</h2>
+
+              <Box
+                display="grid"
+                gridTemplateColumns="repeat(3, 1fr)"
+                gap="15px"
+                backgroundColor="#f1f8e9"
+                padding="20px"
+                borderRadius="8px"
+              >
+                <div className="grid-item">Grid Item 1</div>
+                <div className="grid-item">Grid Item 2</div>
+                <div className="grid-item">Grid Item 3</div>
+              </Box>
+            </div>
+
+            <div className="demo-section">
+              <h2 className="demo-title">4. Responsive Display (Simulated)</h2>
+
+              <div className="responsive-demo">
+                <p>
+                  <strong>
+                    This demonstrates how responsive props would work:
+                  </strong>
+                </p>
+                <p>
+                  • <strong>mobile (0px+):</strong> display: block
+                </p>
+                <p>
+                  • <strong>tablet (768px+):</strong> display: flex
+                </p>
+                <p>
+                  • <strong>desktop (1024px+):</strong> display: grid
+                </p>
+              </div>
+
+              <Box
+                display={
+                  windowWidth < 768
+                    ? "block"
+                    : windowWidth < 1024
+                    ? "flex"
+                    : "grid"
+                }
+                flexDirection={
+                  windowWidth >= 768 && windowWidth < 1024 ? "column" : "row"
+                }
+                justifyContent={
+                  windowWidth >= 768 ? "space-around" : "flex-start"
+                }
+                gridTemplateColumns={
+                  windowWidth >= 1024 ? "repeat(3, 1fr)" : "1fr"
+                }
+                gap={windowWidth >= 768 ? "20px" : "10px"}
+                backgroundColor="#e0f2f1"
+                padding="20px"
+                borderRadius="8px"
+                minHeight="100px"
+              >
+                <div className="grid-item">Responsive Item 1</div>
+                <div className="grid-item">Responsive Item 2</div>
+                <div className="grid-item">Responsive Item 3</div>
+              </Box>
+            </div>
+
+            <div className="demo-section">
+              <h2 className="demo-title">5. Custom Element Rendering</h2>
+
+              <Box
+                as="button"
+                display="inline-block"
+                backgroundColor="#007acc"
+                color="white"
+                padding="12px 24px"
+                borderRadius="6px"
+                border="none"
+                cursor="pointer"
+                margin="10px"
+                style={{ fontSize: "16px" }}
+              >
+                Button Element
+              </Box>
+
+              <Box
+                as="section"
+                display="block"
+                backgroundColor="#f5f5f5"
+                padding="15px"
+                margin="10px 0"
+                borderRadius="4px"
+                border="1px solid #ddd"
+              >
+                Section Element with custom styling
+              </Box>
+            </div>
+
+            <div className="demo-section">
+              <h2 className="demo-title">6. Complex Layout Example</h2>
+
+              <Box
+                display="flex"
+                flexDirection={windowWidth < 768 ? "column" : "row"}
+                gap="20px"
+                backgroundColor="#fafafa"
+                padding="20px"
+                borderRadius="8px"
+              >
+                <Box
+                  flex="1"
+                  backgroundColor="white"
+                  padding="20px"
+                  borderRadius="8px"
+                  style={{ boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}
+                >
+                  <h3>Card 1</h3>
+                  <p>
+                    This card demonstrates responsive layout. On mobile it
+                    stacks vertically, on larger screens it displays
+                    horizontally.
+                  </p>
+                </Box>
+
+                <Box
+                  flex="1"
+                  backgroundColor="white"
+                  padding="20px"
+                  borderRadius="8px"
+                  style={{ boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}
+                >
+                  <h3>Card 2</h3>
+                  <p>
+                    The layout automatically adapts to different screen sizes
+                    using responsive props.
+                  </p>
+                </Box>
+              </Box>
+            </div>
+          </div>
+        );
+      };
+
+      ReactDOM.render(<DemoApp />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
