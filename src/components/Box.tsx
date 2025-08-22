@@ -105,10 +105,10 @@ const BoxComponent = forwardRef<AllowedElement, BoxProps>(
       children,
       className = "",
       as = "div",
+      style,
       mobile,
       tablet,
       desktop,
-      style,
       ...props
     },
     ref
