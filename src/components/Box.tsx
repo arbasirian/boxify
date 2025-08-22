@@ -161,13 +161,16 @@ const BoxComponent = forwardRef<AllowedElement, BoxProps>(
     }, [styles, cssVars]);
 
     // Memoize element props to prevent unnecessary re-renders
-    const elementProps = useMemo(() => ({
-      ref,
-      className: finalClassName,
-      style: finalStyles,
-      ...props,
-      children,
-    }), [ref, finalClassName, finalStyles, props, children]);
+    const elementProps = useMemo(
+      () => ({
+        ref,
+        className: finalClassName,
+        style: finalStyles,
+        ...props,
+        children,
+      }),
+      [ref, finalClassName, finalStyles, props, children]
+    );
 
     return React.createElement(as, elementProps);
   }

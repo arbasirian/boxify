@@ -1,14 +1,46 @@
 {
-  "name": "boxify",
+  "name": "@arbasirian/react",
   "version": "0.1.0",
-  "description": "A flexible React component library that accepts all CSS styles and responsive props",
+  "description": "A lightweight, performant React component library for building responsive layouts with CSS-in-JS styling",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
+  "keywords": [
+    "react",
+    "component",
+    "library",
+    "css-in-js",
+    "responsive",
+    "layout",
+    "utility",
+    "typescript",
+    "box",
+    "flexbox",
+    "grid",
+    "styling"
+  ],
+  "author": {
+    "name": "Armin Basirian",
+    "email": "ar.basirian@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arbasirian/boxify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arbasirian/boxify/issues"
+  },
+  "homepage": "https://github.com/arbasirian/boxify#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "rollup -c",
     "build:analyze": "rollup -c --config-option analyze=true",
@@ -19,7 +51,11 @@
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
     "type-check": "tsc --noEmit",
-    "size": "npm run build && node -e \"console.log('Bundle sizes:'); console.log('CJS:', require('fs').statSync('dist/index.js').size + ' bytes'); console.log('ESM:', require('fs').statSync('dist/index.esm.js').size + ' bytes');\""
+    "size": "npm run build && node -e \"console.log('Bundle sizes:'); console.log('CJS:', require('fs').statSync('dist/index.js').size + ' bytes'); console.log('ESM:', require('fs').statSync('dist/index.esm.js').size + ' bytes');\"",
+    "prepublishOnly": "npm run build && npm run test && npm run type-check",
+    "prepack": "npm run build",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
@@ -29,33 +65,30 @@
     "@rollup/plugin-commonjs": "^25.0.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@rollup/plugin-typescript": "^11.0.0",
-    "@testing-library/jest-dom": "^6.8.0",
-    "@testing-library/react": "^16.3.0",
-    "@types/jest": "^30.0.0",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "eslint": "^8.0.0",
-    "eslint-plugin-react": "^7.0.0",
-    "eslint-plugin-react-hooks": "^4.0.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@types/jest": "^29.5.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
+    "eslint": "^8.38.0",
+    "eslint-plugin-react": "^7.32.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^30.0.5",
-    "jest-environment-jsdom": "^30.0.5",
-    "rollup": "^3.0.0",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rollup": "^3.29.5",
     "rollup-plugin-dts": "^5.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "ts-jest": "^29.4.1",
-    "tslib": "^2.0.0",
+    "ts-jest": "^29.1.0",
+    "tslib": "^2.5.0",
     "typescript": "^5.0.0"
   },
-  "keywords": [
-    "react",
-    "component-library",
-    "css-in-js",
-    "responsive",
-    "flexible-styling"
-  ],
-  "author": "Your Name",
-  "license": "MIT"
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
 }

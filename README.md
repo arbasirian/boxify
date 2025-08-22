@@ -1,307 +1,221 @@
-# Boxify
+# Boxify React
 
-A flexible React component library that accepts all CSS styles and responsive props, starting with display properties.
+A lightweight, performant React component library for building responsive layouts with CSS-in-JS styling.
 
-## Features
+[![npm version](https://badge.fury.io/js/%40arbasirian%2Freact.svg)](https://badge.fury.io/js/%40arbasirian%2Freact)
+[![Bundle size](https://img.shields.io/bundlephobia/min/@arbasirian/react)](https://bundlephobia.com/result?p=@arbasirian/react)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-- **Flexible Styling**: Accept all CSS properties as props
-- **Responsive Design**: Built-in responsive breakpoint system
-- **Type Safety**: Full TypeScript support with comprehensive types
-- **No Custom CSS Required**: Developers can use components without defining custom styles
-- **Performance Optimized**: Uses React.memo and useMemo for optimal rendering
+## ✨ Features
 
-## Installation
+- 🚀 **Lightweight**: Only ~6.3 KB gzipped
+- ⚡ **High Performance**: Optimized with React.memo and useMemo
+- 📱 **Responsive**: Mobile-first responsive design system
+- 🎨 **CSS-in-JS**: Apply styles directly via component props
+- 🔧 **TypeScript**: Full TypeScript support with excellent type safety
+- 🎯 **Flexible**: Accepts all standard HTML attributes
+- 🏗️ **Tree Shakeable**: Optimized for modern bundlers
+
+## 📦 Installation
 
 ```bash
-npm install boxify
-# or
-yarn add boxify
+npm install @arbasirian/react
 ```
 
-## Quick Start
+```bash
+yarn add @arbasirian/react
+```
+
+```bash
+pnpm add @arbasirian/react
+```
+
+## 🚀 Quick Start
 
 ```tsx
-import { Box } from "boxify";
+import { Box } from '@arbasirian/react';
 
 function App() {
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      padding="20px"
-      backgroundColor="blue"
-      color="white"
+    <Box 
+      display="flex" 
+      padding="20px" 
+      backgroundColor="#f0f0f0"
+      desktop={{ padding: '40px' }}
     >
-      Hello Boxify!
+      <Box 
+        as="span" 
+        fontSize="16px" 
+        color="#333"
+        tablet={{ fontSize: '18px' }}
+      >
+        Hello, Boxify!
+      </Box>
     </Box>
   );
 }
 ```
 
-## Responsive Props
+## 📱 Responsive Props
 
-The library supports responsive values through breakpoint-specific override objects. The approach is **mobile-first**, meaning you specify base styles and then override them for larger screens:
+Boxify uses a mobile-first approach with breakpoint-specific overrides:
 
 ```tsx
 <Box
-  display="block"
-  padding="10px"
-  backgroundColor="lightblue"
+  // Base styles (mobile-first)
+  padding="16px"
+  fontSize="14px"
+  
+  // Tablet overrides (768px+)
   tablet={{
-    display: "flex",
-    padding: "20px",
-    justifyContent: "space-around"
+    padding: '24px',
+    fontSize: '16px'
   }}
+  
+  // Desktop overrides (1024px+)
   desktop={{
-    display: "grid",
-    padding: "30px",
-    gridTemplateColumns: "repeat(3, 1fr)"
+    padding: '32px',
+    fontSize: '18px'
   }}
 >
   Responsive content
 </Box>
 ```
 
-## Breakpoints
+## 🎨 Supported CSS Properties
 
-Default breakpoints (can be customized):
+The Box component supports all major CSS properties:
 
-- `mobile`: 0px+ (base styles)
-- `tablet`: 768px+ (tablet overrides)
-- `desktop`: 1024px+ (desktop overrides)
+- **Layout**: `display`, `position`, `width`, `height`
+- **Spacing**: `margin`, `padding`
+- **Typography**: `fontSize`, `fontWeight`, `textAlign`
+- **Flexbox**: `flexDirection`, `justifyContent`, `alignItems`
+- **Grid**: `gridTemplateColumns`, `gridTemplateRows`, `gap`
+- **Background**: `backgroundColor`, `backgroundImage`
+- **Border**: `border`, `borderRadius`
+- **Effects**: `boxShadow`, `transform`, `transition`
+- **And many more...**
 
-## Display Props
-
-The library starts with comprehensive display property support:
-
-```tsx
-// Basic display
-<Box display="flex">Flexbox container</Box>
-<Box display="grid">Grid container</Box>
-<Box display="none">Hidden element</Box>
-
-// Responsive display
-<Box
-  display={{
-    mobile: 'block',
-    tablet: 'flex',
-    desktop: 'grid'
-  }}
->
-  Responsive layout
-</Box>
-```
-
-## Supported CSS Properties
-
-### Layout
-
-- `position`, `top`, `right`, `bottom`, `left`, `zIndex`
-
-### Box Model
-
-- `width`, `height`, `minWidth`, `minHeight`, `maxWidth`, `maxHeight`
-
-### Spacing
-
-- `margin`, `marginTop`, `marginRight`, `marginBottom`, `marginLeft`
-- `padding`, `paddingTop`, `paddingRight`, `paddingBottom`, `paddingLeft`
-
-### Border
-
-- `border`, `borderRadius`
-
-### Background
-
-- `backgroundColor`, `backgroundImage`
-
-### Typography
-
-- `color`, `fontSize`, `fontWeight`, `textAlign`
-
-### Flexbox
-
-- `flexDirection`, `justifyContent`, `alignItems`, `flexWrap`, `flex`
-
-### Grid
-
-- `gridTemplateColumns`, `gridTemplateRows`, `gap`
-
-### Transform
-
-- `transform`, `transition`
-
-### Overflow
-
-- `overflow`, `overflowX`, `overflowY`
-
-### Additional
-
-- `boxShadow`, `cursor`
-
-## Component Props
+## 🔧 Component Props
 
 ### Base Props
-
-- `children`: React children
+- `children`: React nodes to render
 - `className`: Additional CSS classes
 - `style`: Custom inline styles
-- `as`: HTML element to render - only accepts `"div"`, `"span"`, or `"label"` (default: `"div"`)
-
-### Display Props
-
-- `display`: CSS display property with responsive support
+- `as`: Element type (`"div"`, `"span"`, `"label"`)
 
 ### CSS Props
+All CSS properties are supported as props with proper TypeScript types.
 
-All standard CSS properties with responsive support
+### Responsive Props
+- `mobile`: Mobile-specific style overrides
+- `tablet`: Tablet-specific style overrides (768px+)
+- `desktop`: Desktop-specific style overrides (1024px+)
 
 ### HTML Attributes
-The Box component accepts **all standard HTML attributes** including:
-- **Event handlers**: `onClick`, `onChange`, `onSubmit`, etc.
-- **Form attributes**: `type`, `name`, `value`, `required`, `disabled`, etc.
-- **Accessibility**: `id`, `aria-*`, `role`, etc.
-- **Data attributes**: `data-*`, `data-testid`, etc.
-- **Link attributes**: `href`, `target`, `rel`, etc.
-- **Input attributes**: `placeholder`, `defaultValue`, `htmlFor`, etc.
+All standard HTML attributes are supported and will be passed to the underlying DOM element.
 
-## Advanced Usage
+## 📚 Advanced Usage
 
-### Custom Element Rendering
-
+### Custom Breakpoints
 ```tsx
-<Box as="section" display="flex">
-  Section with flexbox
-</Box>
+import { DEFAULT_BREAKPOINTS } from '@arbasirian/react';
 
-<Box as="button" display="inline-block">
-  Button element
+// Customize breakpoints
+const customBreakpoints = {
+  ...DEFAULT_BREAKPOINTS,
+  tablet: 600,  // Custom tablet breakpoint
+  desktop: 900  // Custom desktop breakpoint
+};
+```
+
+### Responsive Utilities
+```tsx
+import { 
+  getCurrentBreakpoint, 
+  mergeResponsiveStyles,
+  generateResponsiveCSS 
+} from '@arbasirian/react';
+
+// Get current breakpoint
+const breakpoint = getCurrentBreakpoint();
+
+// Merge responsive styles
+const styles = mergeResponsiveStyles(baseStyles, responsiveOverrides);
+
+// Generate CSS custom properties
+const cssVars = generateResponsiveCSS(responsiveOverrides);
+```
+
+### Performance Optimization
+```tsx
+import { useMemo } from 'react';
+
+// Memoize responsive props to prevent unnecessary re-renders
+const responsiveProps = useMemo(() => ({
+  tablet: { padding: '24px' },
+  desktop: { padding: '32px' }
+}), []);
+
+<Box {...responsiveProps}>
+  Optimized content
 </Box>
 ```
 
-### HTML Attributes Examples
+## 🧪 Testing
 
-```tsx
-// Div with accessibility and data attributes
-<Box
-  as="div"
-  id="container"
-  data-testid="main-container"
-  aria-label="Main content container"
-  display="block"
-  padding="20px"
-  backgroundColor="#f5f5f5"
->
-  Content container
-</Box>
+```bash
+# Run tests
+npm test
 
-// Span with event handlers and styling
-<Box
-  as="span"
-  onClick={() => handleClick()}
-  onMouseEnter={() => handleHover()}
-  display="inline-block"
-  padding="10px"
-  backgroundColor="blue"
-  color="white"
-  cursor="pointer"
->
-  Clickable span
-</Box>
+# Run tests in watch mode
+npm run test:watch
 
-// Label with form and accessibility attributes
-<Box
-  as="label"
-  htmlFor="input-field"
-  display="block"
-  margin="10px 0"
-  fontWeight="bold"
-  color="#333"
-  aria-required="true"
->
-  Required Field
-</Box>
+# Run tests with coverage
+npm run test:coverage
 ```
 
-### Combining with Custom Styles
-
-```tsx
-<Box
-  display="flex"
-  style={{
-    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-    cursor: "pointer",
-  }}
->
-  Custom styled flexbox
-</Box>
-```
-
-### Responsive Layouts
-
-```tsx
-<Box
-  display="block"
-  padding="10px"
-  gap="10px"
-  backgroundColor="lightgray"
-  tablet={{
-    display: "flex",
-    padding: "20px",
-    gap: "20px",
-    gridTemplateColumns: "repeat(3, 1fr)",
-  }}
-  desktop={{
-    display: "grid",
-    padding: "30px",
-    gap: "30px",
-    gridTemplateColumns: "repeat(4, 1fr)",
-  }}
->
-  <Box>Item 1</Box>
-  <Box>Item 2</Box>
-  <Box>Item 3</Box>
-  <Box>Item 4</Box>
-</Box>
-```
-
-## Development
+## 🏗️ Development
 
 ```bash
 # Install dependencies
 npm install
 
-# Development mode
+# Start development mode
 npm run dev
 
-# Build
+# Build for production
 npm run build
 
-# Type checking
-npm run type-check
+# Check bundle size
+npm run size
 
-# Linting
+# Lint code
 npm run lint
+
+# Type check
+npm run type-check
 ```
 
-## Architecture
+## 📊 Performance
 
-The library is built with a modular architecture:
+- **Bundle Size**: ~6.3 KB (CJS) / ~6.1 KB (ESM)
+- **Tree Shaking**: Excellent - only imports what you use
+- **Runtime**: Optimized with React.memo and useMemo
+- **Build Time**: Fast builds with Rollup
 
-- **Types**: Comprehensive TypeScript definitions
-- **Utilities**: Responsive value handling and CSS generation
-- **Components**: React components with flexible prop systems
-- **Build System**: Rollup-based bundling with multiple output formats
+## 🤝 Contributing
 
-## Contributing
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+## 📄 License
 
-## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-MIT
+## 🔗 Links
+
+- [GitHub Repository](https://github.com/arbasirian/boxify)
+- [Issue Tracker](https://github.com/arbasirian/boxify/issues)
+- [Performance Guide](PERFORMANCE.md)
+- [Architecture Guide](ARCHITECTURE.md)
+- [Changelog](CHANGELOG.md)
