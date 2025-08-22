@@ -5,10 +5,14 @@ demo/
 
 # Development files
 .eslintrc.js
+.eslintrc.cjs
 jest.config.js
 rollup.config.js
 tsconfig.json
 .eslintignore
+
+# GitHub Actions
+.github/
 
 # Documentation (keep README.md and LICENSE)
 ARCHITECTURE.md

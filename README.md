@@ -2,8 +2,8 @@
 
 A lightweight, performant React component library for building responsive layouts with CSS-in-JS styling.
 
-[![npm version](https://badge.fury.io/js/%40arbasirian%2Freact.svg)](https://badge.fury.io/js/%40arbasirian%2Freact)
-[![Bundle size](https://img.shields.io/bundlephobia/min/@arbasirian/react)](https://bundlephobia.com/result?p=@arbasirian/react)
+[![npm version](https://badge.fury.io/js/%40ar.basirian%2Freact.svg)](https://badge.fury.io/js/%40ar.basirian%2Freact)
+[![Bundle size](https://img.shields.io/bundlephobia/min/@ar.basirian/react)](https://bundlephobia.com/result?p=@ar.basirian/react)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## ✨ Features
@@ -19,21 +19,21 @@ A lightweight, performant React component library for building responsive layout
 ## 📦 Installation
 
 ```bash
-npm install @arbasirian/react
+npm install @ar.basirian/react
 ```
 
 ```bash
-yarn add @arbasirian/react
+yarn add @ar.basirian/react
 ```
 
 ```bash
-pnpm add @arbasirian/react
+pnpm add @ar.basirian/react
 ```
 
 ## 🚀 Quick Start
 
 ```tsx
-import { Box } from '@arbasirian/react';
+import { Box } from '@ar.basirian/react';
 
 function App() {
   return (
@@ -119,7 +119,7 @@ All standard HTML attributes are supported and will be passed to the underlying 
 
 ### Custom Breakpoints
 ```tsx
-import { DEFAULT_BREAKPOINTS } from '@arbasirian/react';
+import { DEFAULT_BREAKPOINTS } from '@ar.basirian/react';
 
 // Customize breakpoints
 const customBreakpoints = {
@@ -135,7 +135,7 @@ import {
   getCurrentBreakpoint, 
   mergeResponsiveStyles,
   generateResponsiveCSS 
-} from '@arbasirian/react';
+} from '@ar.basirian/react';
 
 // Get current breakpoint
 const breakpoint = getCurrentBreakpoint();

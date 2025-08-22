@@ -1,5 +1,5 @@
 {
-  "name": "@arbasirian/react",
+  "name": "@ar.basirian/react",
   "version": "0.1.0",
   "description": "A lightweight, performant React component library for building responsive layouts with CSS-in-JS styling",
   "type": "module",

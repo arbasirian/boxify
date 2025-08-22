@@ -54,9 +54,9 @@ git push origin v0.1.0
 npm login
 ```
 
-### 3. Package Scope
-Since we're using `@arbasirian/react`, you'll be publishing under your personal npm scope:
-- This will be published as `@arbasirian/react`
+### **Package Scope**
+Since we're using `@ar.basirian/react`, you'll be publishing under your personal npm scope:
+- This will be published as `@ar.basirian/react`
 - No organization setup required
 - Package will be public and accessible to everyone
 
@@ -155,7 +155,7 @@ npm publish --access public
 
 ```json
 {
-  "name": "@arbasirian/react",
+  "name": "@ar.basirian/react",
   "version": "0.1.0",
   "description": "A lightweight, performant React component library...",
   "main": "dist/index.js",
@@ -213,10 +213,10 @@ Enable 2FA on your npm account for security.
 
 ### **Access Control**
 - Use `"access": "public"` for public packages
-- Scoped packages (`@arbasirian/react`) are public by default
+- Scoped packages (`@ar.basirian/react`) are public by default
 
 ### **Personal Scope**
-- `@arbasirian/react` uses your personal npm scope
+- `@ar.basirian/react` uses your personal npm scope
 - No organization permissions required
 - Package will be publicly accessible
 
@@ -229,11 +229,11 @@ Enable 2FA on your npm account for security.
 
 ### **1. Monitor Downloads**
 ```bash
-npm stats @arbasirian/react
+npm stats @ar.basirian/react
 ```
 
 ### **2. Check Bundle Size**
-- [Bundlephobia](https://bundlephobia.com/result?p=@arbasirian/react)
+- [Bundlephobia](https://bundlephobia.com/result?p=@ar.basirian/react)
 - [npm bundle size](https://bundlephobia.com/)
 
 ### **3. Update Documentation**
@@ -253,7 +253,7 @@ npm stats @arbasirian/react
 #### **1. Package Name Already Taken**
 ```bash
 # Check if name is available
-npm search @arbasirian/react
+npm search @ar.basirian/react
 
 # The name should be available under your scope
 ```
