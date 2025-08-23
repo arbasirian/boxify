@@ -1,6 +1,6 @@
 {
   "name": "boxify-react",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "A lightweight, performant React component library for building responsive layouts with CSS custom properties, smart defaults, and comprehensive TypeScript support",
   "type": "module",
   "main": "dist/index.js",
