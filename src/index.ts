@@ -9,3 +9,6 @@ export type {
 
 // Export components
 export { Box } from "./components/Box";
+
+// Export utilities
+export { cx, classNames } from "./utils";

@@ -1,6 +1,7 @@
 import React from "react";
 import { BoxProps } from "../types";
 import styles from "./Box.module.css";
+import { cx } from "../utils";
 
 export const Box: React.FC<BoxProps> = ({
   children,
@@ -87,7 +88,78 @@ export const Box: React.FC<BoxProps> = ({
 
   return (
     <Component
-      className={`${styles.box} ${className || ""}`}
+      className={cx(
+        styles.box,
+        className,
+        display && styles.bxDisplay,
+        position && styles.bxPosition,
+        top && styles.bxTop,
+        right && styles.bxRight,
+        bottom && styles.bxBottom,
+        left && styles.bxLeft,
+        zIndex && styles.bxZIndex,
+        width && styles.bxWidth,
+        height && styles.bxHeight,
+        minWidth && styles.bxMinWidth,
+        minHeight && styles.bxMinHeight,
+        maxWidth && styles.bxMaxWidth,
+        maxHeight && styles.bxMaxHeight,
+        margin && styles.bxMargin,
+        marginTop && styles.bxMarginTop,
+        marginRight && styles.bxMarginRight,
+        marginBottom && styles.bxMarginBottom,
+        marginLeft && styles.bxMarginLeft,
+        padding && styles.bxPadding,
+        paddingTop && styles.bxPaddingTop,
+        paddingRight && styles.bxPaddingRight,
+        paddingBottom && styles.bxPaddingBottom,
+        paddingLeft && styles.bxPaddingLeft,
+        border && styles.bxBorder,
+        borderRadius && styles.bxBorderRadius,
+        borderColor && styles.bxBorderColor,
+        borderStyle && styles.bxBorderStyle,
+        borderWidth && styles.bxBorderWidth,
+        backgroundColor && styles.bxBackgroundColor,
+        backgroundImage && styles.bxBackgroundImage,
+        fontSize && styles.bxFontSize,
+        fontWeight && styles.bxFontWeight,
+        textAlign && styles.bxTextAlign,
+        color && styles.bxColor,
+        lineHeight && styles.bxLineHeight,
+        letterSpacing && styles.bxLetterSpacing,
+        textDecoration && styles.bxTextDecoration,
+        textTransform && styles.bxTextTransform,
+        fontFamily && styles.bxFontFamily,
+        fontStyle && styles.bxFontStyle,
+        whiteSpace && styles.bxWhiteSpace,
+        textOverflow && styles.bxTextOverflow,
+        flexDirection && styles.bxFlexDirection,
+        justifyContent && styles.bxJustifyContent,
+        alignItems && styles.bxAlignItems,
+        flexWrap && styles.bxFlexWrap,
+        flex && styles.bxFlex,
+        gridTemplateColumns && styles.bxGridTemplateColumns,
+        gridTemplateRows && styles.bxGridTemplateRows,
+        gridTemplateAreas && styles.bxGridTemplateAreas,
+        gridArea && styles.bxGridArea,
+        gridColumn && styles.bxGridColumn,
+        gridRow && styles.bxGridRow,
+        gridColumnStart && styles.bxGridColumnStart,
+        gridColumnEnd && styles.bxGridColumnEnd,
+        gridRowStart && styles.bxGridRowStart,
+        gridRowEnd && styles.bxGridRowEnd,
+        gridAutoFlow && styles.bxGridAutoFlow,
+        gridAutoColumns && styles.bxGridAutoColumns,
+        gridAutoRows && styles.bxGridAutoRows,
+        gap && styles.bxGap,
+        transform && styles.bxTransform,
+        transition && styles.bxTransition,
+        overflow && styles.bxOverflow,
+        overflowX && styles.bxOverflowX,
+        overflowY && styles.bxOverflowY,
+        boxShadow && styles.bxBoxShadow,
+        cursor && styles.bxCursor
+      )}
       style={{
         ...style,
         ...{

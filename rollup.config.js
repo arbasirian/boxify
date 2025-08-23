@@ -38,7 +38,7 @@ export default [
       }),
       postcss({
         modules: true,
-        extract: false,
+        extract: "index.css",
         inject: false,
         minimize: true,
       }),
