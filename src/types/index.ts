@@ -1,21 +1,11 @@
 import React from "react";
 
-// Responsive breakpoint types
-export type Breakpoint = "mobile" | "tablet" | "desktop";
-
-// Responsive overrides for specific breakpoints
-export interface ResponsiveOverrides {
-  mobile?: Partial<CSSProps>;
-  tablet?: Partial<CSSProps>;
-  desktop?: Partial<CSSProps>;
-}
-
 // Base props that all components will extend
 export interface BaseProps {
   children?: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
-  as?: "div" | "span" | "label";
+  as?: "div" | "span" | "label" | "section";
 }
 
 // CSS properties that can be applied (excluding HTML attributes to avoid conflicts)
@@ -55,6 +45,9 @@ export interface CSSProps {
   // Border
   border?: React.CSSProperties["border"];
   borderRadius?: React.CSSProperties["borderRadius"];
+  borderColor?: React.CSSProperties["borderColor"];
+  borderStyle?: React.CSSProperties["borderStyle"];
+  borderWidth?: React.CSSProperties["borderWidth"];
 
   // Background
   backgroundColor?: React.CSSProperties["backgroundColor"];
@@ -64,6 +57,15 @@ export interface CSSProps {
   fontSize?: React.CSSProperties["fontSize"];
   fontWeight?: React.CSSProperties["fontWeight"];
   textAlign?: React.CSSProperties["textAlign"];
+  color?: React.CSSProperties["color"];
+  lineHeight?: React.CSSProperties["lineHeight"];
+  letterSpacing?: React.CSSProperties["letterSpacing"];
+  textDecoration?: React.CSSProperties["textDecoration"];
+  textTransform?: React.CSSProperties["textTransform"];
+  fontFamily?: React.CSSProperties["fontFamily"];
+  fontStyle?: React.CSSProperties["fontStyle"];
+  whiteSpace?: React.CSSProperties["whiteSpace"];
+  textOverflow?: React.CSSProperties["textOverflow"];
 
   // Flexbox
   flexDirection?: React.CSSProperties["flexDirection"];
@@ -75,6 +77,17 @@ export interface CSSProps {
   // Grid
   gridTemplateColumns?: React.CSSProperties["gridTemplateColumns"];
   gridTemplateRows?: React.CSSProperties["gridTemplateRows"];
+  gridTemplateAreas?: React.CSSProperties["gridTemplateAreas"];
+  gridArea?: React.CSSProperties["gridArea"];
+  gridColumn?: React.CSSProperties["gridColumn"];
+  gridRow?: React.CSSProperties["gridRow"];
+  gridColumnStart?: React.CSSProperties["gridColumnStart"];
+  gridColumnEnd?: React.CSSProperties["gridColumnEnd"];
+  gridRowStart?: React.CSSProperties["gridRowStart"];
+  gridRowEnd?: React.CSSProperties["gridRowEnd"];
+  gridAutoFlow?: React.CSSProperties["gridAutoFlow"];
+  gridAutoColumns?: React.CSSProperties["gridAutoColumns"];
+  gridAutoRows?: React.CSSProperties["gridAutoRows"];
   gap?: React.CSSProperties["gap"];
 
   // Transform
@@ -92,9 +105,19 @@ export interface CSSProps {
   htmlFor?: string;
 }
 
+// Responsive breakpoint types
+export type Breakpoint = "mobile" | "tablet" | "desktop";
+
+// Responsive overrides for specific breakpoints
+export interface ResponsiveOverrides {
+  mobile?: Partial<CSSProps>;
+  tablet?: Partial<CSSProps>;
+  desktop?: Partial<CSSProps>;
+}
+
 // Combined props for the Box component
 export interface BoxProps
   extends BaseProps,
     CSSProps,
     ResponsiveOverrides,
-    Omit<React.HTMLAttributes<HTMLElement>, keyof CSSProps> {}
+    Omit<React.HTMLAttributes<HTMLElement>, keyof CSSProps | keyof BaseProps> {}

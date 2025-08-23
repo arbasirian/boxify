@@ -43,7 +43,6 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "build:analyze": "rollup -c --config-option analyze=true",
     "dev": "rollup -c -w",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -83,6 +82,7 @@
     "rollup": "^3.29.5",
     "rollup-plugin-dts": "^5.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
     "ts-jest": "^29.1.0",
     "tslib": "^2.5.0",
     "typescript": "^5.0.0"

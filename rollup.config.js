@@ -3,6 +3,9 @@ import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import dts from "rollup-plugin-dts";
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const postcss = require("rollup-plugin-postcss");
 
 export default [
   {
@@ -32,6 +35,12 @@ export default [
       commonjs({
         include: "node_modules/**",
         transformMixedEsModules: true,
+      }),
+      postcss({
+        modules: true,
+        extract: false,
+        inject: false,
+        minimize: true,
       }),
       typescript({
         tsconfig: "./tsconfig.json",

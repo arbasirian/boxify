@@ -8,24 +8,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Initial project setup
-- Box component with responsive props support
-- Mobile/tablet/desktop breakpoint system
-- Comprehensive CSS properties support
-- TypeScript type definitions
-- Responsive utility functions
-- Build system with Rollup
-- Testing setup with Jest
-- Documentation and examples
-- Interactive demo
+
+- Enhanced Box component with comprehensive CSS properties support
+- CSS custom properties architecture for optimal performance
+- Polymorphic rendering with `as` prop (div, span, label, section)
+- Responsive design system with mobile/tablet/desktop breakpoints
+- Complete typography, layout, flexbox, and grid support
+- Full TypeScript support with comprehensive type definitions
+- CSS module support with proper type declarations
+- PostCSS integration for CSS processing in build pipeline
 
 ### Changed
-- Updated breakpoint system from xs/sm/md/lg/xl/2xl to mobile/tablet/desktop
-- Removed legacy gridGap property in favor of modern gap property
 
-## [0.1.0] - 2024-01-XX
+- Refactored to use CSS custom properties instead of inline styles
+- Simplified architecture by removing unused utility functions
+- Updated responsive system to use CSS variable fallbacks
+- Streamlined component API for better developer experience
+- Fixed all TypeScript type issues and linting errors
+- Improved polymorphic component type safety
+- Enhanced prop filtering to prevent CSS props from leaking to DOM
+
+### Technical Details
+
+- **CSS Architecture**: Uses CSS custom properties with responsive fallbacks
+- **Type Safety**: Full TypeScript support with proper CSS module types
+- **Build System**: Rollup with PostCSS for CSS module support
+- **Performance**: Zero runtime overhead with CSS variable approach
+- **Responsive**: Mobile-first with tablet (768px+) and desktop (1024px+) breakpoints
+
+## [0.1.7] - 2024-01-XX
 
 ### Added
+
 - **Box Component**: Flexible React component that accepts all CSS styles as props
 - **Responsive System**: Built-in responsive breakpoint system (mobile, tablet, desktop)
 - **Display Props**: Comprehensive display property support with responsive values
@@ -33,21 +47,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Type Safety**: Full TypeScript support with comprehensive types
 - **Build System**: Rollup-based bundling with multiple output formats
 - **Testing**: Jest setup with React Testing Library
-- **Documentation**: Comprehensive README, architecture guide, and examples
-- **Demo**: Interactive HTML demo showcasing component capabilities
+- **Documentation**: Comprehensive README and examples
 
 ### Technical Details
+
 - **Breakpoints**: mobile (0px+), tablet (768px+), desktop (1024px+)
 - **Responsive Values**: Support for breakpoint-specific CSS values
-- **Performance**: Optimized with React.memo and useMemo
-- **Custom Elements**: Support for rendering as any HTML element via `as` prop
-- **CSS-in-JS**: Generates inline styles and CSS custom properties
+- **Performance**: Optimized with CSS custom properties for zero runtime overhead
+- **Custom Elements**: Support for rendering as div, span, label, or section via `as` prop
+- **CSS Architecture**: Uses CSS variables with responsive fallbacks
 
 ---
-
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
 ## License
 

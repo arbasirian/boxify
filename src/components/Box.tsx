@@ -1,156 +1,329 @@
-import React, { forwardRef, useMemo, memo, useEffect } from "react";
+import React from "react";
 import { BoxProps } from "../types";
-import {
-  getDynamicCSSClass,
-  generateCSSVariables,
-  generateStaticClasses,
-  isBrowser,
-} from "../utils/styleCache";
-import {
-  generateResponsiveStaticClasses,
-  generateResponsiveDynamicClasses,
-  generateResponsiveCSSVariables,
-  insertResponsiveMediaQueries,
-} from "../utils/responsiveAtomic";
+import styles from "./Box.module.css";
 
-// Type for the allowed HTML elements
-type AllowedElement = HTMLDivElement | HTMLSpanElement | HTMLLabelElement;
+export const Box: React.FC<BoxProps> = ({
+  children,
+  className,
+  style,
+  as = "div",
+  // Extract CSS props to prevent them from being passed to DOM
+  display,
+  position,
+  top,
+  right,
+  bottom,
+  left,
+  zIndex,
+  width,
+  height,
+  minWidth,
+  minHeight,
+  maxWidth,
+  maxHeight,
+  margin,
+  marginTop,
+  marginRight,
+  marginBottom,
+  marginLeft,
+  padding,
+  paddingTop,
+  paddingRight,
+  paddingBottom,
+  paddingLeft,
+  border,
+  borderRadius,
+  borderColor,
+  borderStyle,
+  borderWidth,
+  backgroundColor,
+  backgroundImage,
+  fontSize,
+  fontWeight,
+  textAlign,
+  color,
+  lineHeight,
+  letterSpacing,
+  textDecoration,
+  textTransform,
+  fontFamily,
+  fontStyle,
+  whiteSpace,
+  textOverflow,
+  flexDirection,
+  justifyContent,
+  alignItems,
+  flexWrap,
+  flex,
+  gridTemplateColumns,
+  gridTemplateRows,
+  gridTemplateAreas,
+  gridArea,
+  gridColumn,
+  gridRow,
+  gridColumnStart,
+  gridColumnEnd,
+  gridRowStart,
+  gridRowEnd,
+  gridAutoFlow,
+  gridAutoColumns,
+  gridAutoRows,
+  gap,
+  transform,
+  transition,
+  overflow,
+  overflowX,
+  overflowY,
+  boxShadow,
+  cursor,
+  // Extract responsive props
+  tablet,
+  desktop,
+  // Extract htmlFor prop
+  htmlFor,
+  ...restProps
+}) => {
+  const Component = as as React.ElementType;
 
-// Memoized Box component for better performance
-const BoxComponent = forwardRef<AllowedElement, BoxProps>(
-  (
-    {
-      children,
-      className = "",
-      as = "div",
-      style,
-      mobile,
-      tablet,
-      desktop,
-      ...props
-    },
-    ref
-  ) => {
-    // Memoize static CSS classes generation
-    const staticClasses = useMemo(() => generateStaticClasses(props), [props]);
+  return (
+    <Component
+      className={`${styles.box} ${className || ""}`}
+      style={{
+        ...style,
+        ...{
+          // Display
+          "--display": display,
+          "--display-tablet": tablet?.display,
+          "--display-desktop": desktop?.display,
 
-    // Memoize dynamic CSS classes generation
-    const dynamicClasses = useMemo(() => {
-      const classes: string[] = [];
-      const dynamicProps = [
-        "width",
-        "height",
-        "minWidth",
-        "minHeight",
-        "maxWidth",
-        "maxHeight",
-      ] as const;
+          // Layout
+          "--position": position,
+          "--position-tablet": tablet?.position,
+          "--position-desktop": desktop?.position,
+          "--top": top,
+          "--top-tablet": tablet?.top,
+          "--top-desktop": desktop?.top,
+          "--right": right,
+          "--right-tablet": tablet?.right,
+          "--right-desktop": desktop?.right,
+          "--bottom": bottom,
+          "--bottom-tablet": tablet?.bottom,
+          "--bottom-desktop": desktop?.bottom,
+          "--left": left,
+          "--left-tablet": tablet?.left,
+          "--left-desktop": desktop?.left,
+          "--z-index": zIndex,
+          "--z-index-tablet": tablet?.zIndex,
+          "--z-index-desktop": desktop?.zIndex,
 
-      for (const prop of dynamicProps) {
-        if (props[prop] !== undefined) {
-          classes.push(getDynamicCSSClass(prop));
-        }
-      }
+          // Box Model
+          "--width": width,
+          "--width-tablet": tablet?.width,
+          "--width-desktop": desktop?.width,
+          "--height": height,
+          "--height-tablet": tablet?.height,
+          "--height-desktop": desktop?.height,
+          "--min-width": minWidth,
+          "--min-width-tablet": tablet?.minWidth,
+          "--min-width-desktop": desktop?.minWidth,
+          "--min-height": minHeight,
+          "--min-height-tablet": tablet?.minHeight,
+          "--min-height-desktop": desktop?.minHeight,
+          "--max-width": maxWidth,
+          "--max-width-tablet": tablet?.maxWidth,
+          "--max-width-desktop": desktop?.maxWidth,
+          "--max-height": maxHeight,
+          "--max-height-tablet": tablet?.maxHeight,
+          "--max-height-desktop": desktop?.maxHeight,
 
-      return classes;
-    }, [
-      props.width,
-      props.height,
-      props.minWidth,
-      props.minHeight,
-      props.maxWidth,
-      props.maxHeight,
-    ]);
+          // Spacing
+          "--margin": margin,
+          "--margin-tablet": tablet?.margin,
+          "--margin-desktop": desktop?.margin,
+          "--margin-top": marginTop,
+          "--margin-top-tablet": tablet?.marginTop,
+          "--margin-top-desktop": desktop?.marginTop,
+          "--margin-right": marginRight,
+          "--margin-right-tablet": tablet?.marginRight,
+          "--margin-right-desktop": desktop?.marginRight,
+          "--margin-bottom": marginBottom,
+          "--margin-bottom-tablet": tablet?.marginBottom,
+          "--margin-bottom-desktop": desktop?.marginBottom,
+          "--margin-left": marginLeft,
+          "--margin-left-tablet": tablet?.marginLeft,
+          "--margin-left-desktop": desktop?.marginLeft,
+          "--padding": padding,
+          "--padding-tablet": tablet?.padding,
+          "--padding-desktop": desktop?.padding,
+          "--padding-top": paddingTop,
+          "--padding-top-tablet": tablet?.paddingTop,
+          "--padding-top-desktop": desktop?.paddingTop,
+          "--padding-right": paddingRight,
+          "--padding-right-tablet": tablet?.paddingRight,
+          "--padding-right-desktop": desktop?.paddingRight,
+          "--padding-bottom": paddingBottom,
+          "--padding-bottom-tablet": tablet?.paddingBottom,
+          "--padding-bottom-desktop": desktop?.paddingBottom,
+          "--padding-left": paddingLeft,
+          "--padding-left-tablet": tablet?.paddingLeft,
+          "--padding-left-desktop": desktop?.paddingLeft,
 
-    // Memoize responsive static classes
-    const responsiveStaticClasses = useMemo(
-      () => generateResponsiveStaticClasses({ mobile, tablet, desktop }),
-      [mobile, tablet, desktop]
-    );
+          // Border
+          "--border": border,
+          "--border-tablet": tablet?.border,
+          "--border-desktop": desktop?.border,
+          "--border-radius": borderRadius,
+          "--border-radius-tablet": tablet?.borderRadius,
+          "--border-radius-desktop": desktop?.borderRadius,
+          "--border-color": borderColor,
+          "--border-color-tablet": tablet?.borderColor,
+          "--border-color-desktop": desktop?.borderColor,
+          "--border-style": borderStyle,
+          "--border-style-tablet": tablet?.borderStyle,
+          "--border-style-desktop": desktop?.borderStyle,
+          "--border-width": borderWidth,
+          "--border-width-tablet": tablet?.borderWidth,
+          "--border-width-desktop": desktop?.borderWidth,
 
-    // Memoize responsive dynamic classes
-    const responsiveDynamicClasses = useMemo(
-      () => generateResponsiveDynamicClasses({ mobile, tablet, desktop }),
-      [mobile, tablet, desktop]
-    );
+          // Background
+          "--background-color": backgroundColor,
+          "--background-color-tablet": tablet?.backgroundColor,
+          "--background-color-desktop": desktop?.backgroundColor,
+          "--background-image": backgroundImage,
+          "--background-image-tablet": tablet?.backgroundImage,
+          "--background-image-desktop": desktop?.backgroundImage,
 
-    // Memoize CSS variables for dynamic values
-    const cssVariables = useMemo(
-      () => generateCSSVariables(props),
-      [
-        props.width,
-        props.height,
-        props.minWidth,
-        props.minHeight,
-        props.maxWidth,
-        props.maxHeight,
-      ]
-    );
+          // Typography
+          "--font-size": fontSize,
+          "--font-size-tablet": tablet?.fontSize,
+          "--font-size-desktop": desktop?.fontSize,
+          "--font-weight": fontWeight,
+          "--font-weight-tablet": tablet?.fontWeight,
+          "--font-weight-desktop": desktop?.fontWeight,
+          "--text-align": textAlign,
+          "--text-align-tablet": tablet?.textAlign,
+          "--text-align-desktop": desktop?.textAlign,
+          "--color": color,
+          "--color-tablet": tablet?.color,
+          "--color-desktop": desktop?.color,
+          "--line-height": lineHeight,
+          "--line-height-tablet": tablet?.lineHeight,
+          "--line-height-desktop": desktop?.lineHeight,
+          "--letter-spacing": letterSpacing,
+          "--letter-spacing-tablet": tablet?.letterSpacing,
+          "--letter-spacing-desktop": desktop?.letterSpacing,
+          "--text-decoration": textDecoration,
+          "--text-decoration-tablet": tablet?.textDecoration,
+          "--text-decoration-desktop": desktop?.textDecoration,
+          "--text-transform": textTransform,
+          "--text-transform-tablet": tablet?.textTransform,
+          "--text-transform-desktop": desktop?.textTransform,
+          "--font-family": fontFamily,
+          "--font-family-tablet": tablet?.fontFamily,
+          "--font-family-desktop": desktop?.fontFamily,
+          "--font-style": fontStyle,
+          "--font-style-tablet": tablet?.fontStyle,
+          "--font-style-desktop": desktop?.fontStyle,
+          "--white-space": whiteSpace,
+          "--white-space-tablet": tablet?.whiteSpace,
+          "--white-space-desktop": desktop?.whiteSpace,
+          "--text-overflow": textOverflow,
+          "--text-overflow-tablet": tablet?.textOverflow,
+          "--text-overflow-desktop": desktop?.textOverflow,
 
-    // Memoize responsive CSS variables
-    const responsiveCSSVariables = useMemo(
-      () => generateResponsiveCSSVariables({ mobile, tablet, desktop }),
-      [mobile, tablet, desktop]
-    );
+          // Flexbox
+          "--flex-direction": flexDirection,
+          "--flex-direction-tablet": tablet?.flexDirection,
+          "--flex-direction-desktop": desktop?.flexDirection,
+          "--justify-content": justifyContent,
+          "--justify-content-tablet": tablet?.justifyContent,
+          "--justify-content-desktop": desktop?.justifyContent,
+          "--align-items": alignItems,
+          "--align-items-tablet": tablet?.alignItems,
+          "--align-items-desktop": desktop?.alignItems,
+          "--flex-wrap": flexWrap,
+          "--flex-wrap-tablet": tablet?.flexWrap,
+          "--flex-wrap-desktop": desktop?.flexWrap,
+          "--flex": flex,
+          "--flex-tablet": tablet?.flex,
+          "--flex-desktop": desktop?.flex,
 
-    // Memoize final className
-    const finalClassName = useMemo(() => {
-      const allClasses = [
-        ...staticClasses,
-        ...dynamicClasses,
-        ...responsiveStaticClasses,
-        ...responsiveDynamicClasses,
-        className,
-      ].filter(Boolean);
+          // Grid
+          "--grid-template-columns": gridTemplateColumns,
+          "--grid-template-columns-tablet": tablet?.gridTemplateColumns,
+          "--grid-template-columns-desktop": desktop?.gridTemplateColumns,
+          "--grid-template-rows": gridTemplateRows,
+          "--grid-template-rows-tablet": tablet?.gridTemplateRows,
+          "--grid-template-rows-desktop": desktop?.gridTemplateRows,
+          "--grid-template-areas": gridTemplateAreas,
+          "--grid-template-areas-tablet": tablet?.gridTemplateAreas,
+          "--grid-template-areas-desktop": desktop?.gridTemplateAreas,
+          "--grid-area": gridArea,
+          "--grid-area-tablet": tablet?.gridArea,
+          "--grid-area-desktop": desktop?.gridArea,
+          "--grid-column": gridColumn,
+          "--grid-column-tablet": tablet?.gridColumn,
+          "--grid-column-desktop": desktop?.gridColumn,
+          "--grid-row": gridRow,
+          "--grid-row-tablet": tablet?.gridRow,
+          "--grid-row-desktop": desktop?.gridRow,
+          "--grid-column-start": gridColumnStart,
+          "--grid-column-start-tablet": tablet?.gridColumnStart,
+          "--grid-column-start-desktop": desktop?.gridColumnStart,
+          "--grid-column-end": gridColumnEnd,
+          "--grid-column-end-tablet": tablet?.gridColumnEnd,
+          "--grid-column-end-desktop": desktop?.gridColumnEnd,
+          "--grid-row-start": gridRowStart,
+          "--grid-row-start-tablet": tablet?.gridRowStart,
+          "--grid-row-start-desktop": desktop?.gridRowStart,
+          "--grid-row-end": gridRowEnd,
+          "--grid-row-end-tablet": tablet?.gridRowEnd,
+          "--grid-row-end-desktop": desktop?.gridRowEnd,
+          "--grid-auto-flow": gridAutoFlow,
+          "--grid-auto-flow-tablet": tablet?.gridAutoFlow,
+          "--grid-auto-flow-desktop": desktop?.gridAutoFlow,
+          "--grid-auto-columns": gridAutoColumns,
+          "--grid-auto-columns-tablet": tablet?.gridAutoColumns,
+          "--grid-auto-columns-desktop": desktop?.gridAutoColumns,
+          "--grid-auto-rows": gridAutoRows,
+          "--grid-auto-rows-tablet": tablet?.gridAutoRows,
+          "--grid-auto-rows-desktop": desktop?.gridAutoRows,
+          "--gap": gap,
+          "--gap-tablet": tablet?.gap,
+          "--gap-desktop": desktop?.gap,
 
-      return allClasses.join(" ");
-    }, [
-      staticClasses,
-      dynamicClasses,
-      responsiveStaticClasses,
-      responsiveDynamicClasses,
-      className,
-    ]);
+          // Transform
+          "--transform": transform,
+          "--transform-tablet": tablet?.transform,
+          "--transform-desktop": desktop?.transform,
+          "--transition": transition,
+          "--transition-tablet": tablet?.transition,
+          "--transition-desktop": desktop?.transition,
 
-    // Memoize final styles (only CSS variables and user-passed style)
-    const finalStyles = useMemo(() => {
-      const styles: React.CSSProperties = {
-        ...cssVariables,
-        ...responsiveCSSVariables,
-      };
+          // Overflow
+          "--overflow": overflow,
+          "--overflow-tablet": tablet?.overflow,
+          "--overflow-desktop": desktop?.overflow,
+          "--overflow-x": overflowX,
+          "--overflow-x-tablet": tablet?.overflowX,
+          "--overflow-x-desktop": desktop?.overflowX,
+          "--overflow-y": overflowY,
+          "--overflow-y-tablet": tablet?.overflowY,
+          "--overflow-y-desktop": desktop?.overflowY,
 
-      if (style) {
-        Object.assign(styles, style);
-      }
-
-      return styles;
-    }, [cssVariables, responsiveCSSVariables, style]);
-
-    // Insert responsive media queries into stylesheet
-    useEffect(() => {
-      if (!isBrowser) return;
-
-      const responsiveOverrides = { mobile, tablet, desktop };
-      insertResponsiveMediaQueries(responsiveOverrides);
-    }, [mobile, tablet, desktop]);
-
-    // Memoize element props to prevent unnecessary re-renders
-    const elementProps = useMemo(
-      () => ({
-        ref,
-        className: finalClassName,
-        style: finalStyles,
-        ...props,
-        children,
-      }),
-      [ref, finalClassName, finalStyles, props, children]
-    );
-
-    return React.createElement(as, elementProps);
-  }
-);
-
-BoxComponent.displayName = "Box";
-
-// Export memoized version for better performance
-export const Box = memo(BoxComponent);
+          // Additional CSS properties
+          "--box-shadow": boxShadow,
+          "--box-shadow-tablet": tablet?.boxShadow,
+          "--box-shadow-desktop": desktop?.boxShadow,
+          "--cursor": cursor,
+          "--cursor-tablet": tablet?.cursor,
+          "--cursor-desktop": desktop?.cursor,
+        },
+      }}
+      htmlFor={htmlFor}
+      {...restProps}
+    >
+      {children}
+    </Component>
+  );
+};

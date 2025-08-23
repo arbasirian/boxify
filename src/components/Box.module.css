@@ -1,0 +1,480 @@
+.box {
+  /* Display */
+  display: var(--display, block);
+
+  /* Layout */
+  position: var(--position, static);
+  top: var(--top, auto);
+  right: var(--right, auto);
+  bottom: var(--bottom, auto);
+  left: var(--left, auto);
+  z-index: var(--z-index, auto);
+
+  /* Box Model */
+  width: var(--width, auto);
+  height: var(--height, auto);
+  min-width: var(--min-width, auto);
+  min-height: var(--min-height, auto);
+  max-width: var(--max-width, none);
+  max-height: var(--max-height, none);
+
+  /* Spacing */
+  margin: var(--margin, 0);
+  margin-top: var(--margin-top, 0);
+  margin-right: var(--margin-right, 0);
+  margin-bottom: var(--margin-bottom, 0);
+  margin-left: var(--margin-left, 0);
+  padding: var(--padding, 0);
+  padding-top: var(--padding-top, 0);
+  padding-right: var(--padding-right, 0);
+  padding-bottom: var(--padding-bottom, 0);
+  padding-left: var(--padding-left, 0);
+
+  /* Border */
+  border: var(--border, none);
+  border-radius: var(--border-radius, 0);
+  border-color: var(--border-color, transparent);
+  border-style: var(--border-style, none);
+  border-width: var(--border-width, 0);
+
+  /* Background */
+  background-color: var(--background-color, transparent);
+  background-image: var(--background-image, none);
+
+  /* Typography */
+  font-size: var(--font-size, 16px);
+  font-weight: var(--font-weight, 400);
+  text-align: var(--text-align, left);
+  color: var(--color, inherit);
+  line-height: var(--line-height, 1.5);
+  letter-spacing: var(--letter-spacing, normal);
+  text-decoration: var(--text-decoration, none);
+  text-transform: var(--text-transform, none);
+  font-family: var(--font-family, inherit);
+  font-style: var(--font-style, normal);
+  white-space: var(--white-space, normal);
+  text-overflow: var(--text-overflow, clip);
+
+  /* Flexbox */
+  flex-direction: var(--flex-direction, row);
+  justify-content: var(--justify-content, flex-start);
+  align-items: var(--align-items, stretch);
+  flex-wrap: var(--flex-wrap, nowrap);
+  flex: var(--flex, 0 1 auto);
+
+  /* Grid */
+  grid-template-columns: var(--grid-template-columns, none);
+  grid-template-rows: var(--grid-template-rows, none);
+  grid-template-areas: var(--grid-template-areas, none);
+  grid-area: var(--grid-area, none);
+  grid-column: var(--grid-column, none);
+  grid-row: var(--grid-row, none);
+  grid-column-start: var(--grid-column-start, none);
+  grid-column-end: var(--grid-column-end, none);
+  grid-row-start: var(--grid-row-start, none);
+  grid-row-end: var(--grid-row-end, none);
+  grid-auto-flow: var(--grid-auto-flow, none);
+  grid-auto-columns: var(--grid-auto-columns, none);
+  grid-auto-rows: var(--grid-auto-rows, none);
+  gap: var(--gap, 0);
+
+  /* Transform */
+  transform: var(--transform, none);
+  transition: var(--transition, none);
+
+  /* Overflow */
+  overflow: var(--overflow, visible);
+  overflow-x: var(--overflow-x, visible);
+  overflow-y: var(--overflow-y, visible);
+
+  /* Additional CSS properties */
+  box-shadow: var(--box-shadow, none);
+  cursor: var(--cursor, default);
+}
+
+@media (min-width: 768px) {
+  .box {
+    /* Display */
+    display: var(--display-tablet, var(--display, block));
+
+    /* Layout */
+    position: var(--position-tablet, var(--position, static));
+    top: var(--top-tablet, var(--top, auto));
+    right: var(--right-tablet, var(--right, auto));
+    bottom: var(--bottom-tablet, var(--bottom, auto));
+    left: var(--left-tablet, var(--left, auto));
+    z-index: var(--z-index-tablet, var(--z-index, auto));
+
+    /* Box Model */
+    width: var(--width-tablet, var(--width, auto));
+    height: var(--height-tablet, var(--height, auto));
+    min-width: var(--min-width-tablet, var(--min-width, auto));
+    min-height: var(--min-height-tablet, var(--min-height, auto));
+    max-width: var(--max-width-tablet, var(--max-width, none));
+    max-height: var(--max-height-tablet, var(--max-height, none));
+
+    /* Spacing */
+    margin: var(--margin-tablet, var(--margin, 0));
+    margin-top: var(--margin-top-tablet, var(--margin-top, 0));
+    margin-right: var(--margin-right-tablet, var(--margin-right, 0));
+    margin-bottom: var(--margin-bottom-tablet, var(--margin-bottom, 0));
+    margin-left: var(--margin-left-tablet, var(--margin-left, 0));
+    padding: var(--padding-tablet, var(--padding, 0));
+    padding-top: var(--padding-top-tablet, var(--padding-top, 0));
+    padding-right: var(--padding-right-tablet, var(--padding-right, 0));
+    padding-bottom: var(--padding-bottom-tablet, var(--padding-bottom, 0));
+    padding-left: var(--padding-left-tablet, var(--padding-left, 0));
+
+    /* Border */
+    border: var(--border-tablet, var(--border, none));
+    border-radius: var(--border-radius-tablet, var(--border-radius, 0));
+    border-color: var(--border-color-tablet, var(--border-color, transparent));
+    border-style: var(--border-style-tablet, var(--border-style, none));
+    border-width: var(--border-width-tablet, var(--border-width, 0));
+
+    /* Background */
+    background-color: var(
+      --background-color-tablet,
+      var(--background-color, transparent)
+    );
+    background-image: var(
+      --background-image-tablet,
+      var(--background-image, none)
+    );
+
+    /* Typography */
+    font-size: var(--font-size-tablet, var(--font-size, 16px));
+    font-weight: var(--font-weight-tablet, var(--font-weight, 400));
+    text-align: var(--text-align-tablet, var(--text-align, left));
+    color: var(--color-tablet, var(--color, inherit));
+    line-height: var(--line-height-tablet, var(--line-height, 1.5));
+    letter-spacing: var(--letter-spacing-tablet, var(--letter-spacing, normal));
+    text-decoration: var(
+      --text-decoration-tablet,
+      var(--text-decoration, none)
+    );
+    text-transform: var(--text-transform-tablet, var(--text-transform, none));
+    font-family: var(--font-family-tablet, var(--font-family, inherit));
+    font-style: var(--font-style-tablet, var(--font-style, normal));
+    white-space: var(--white-space-tablet, var(--white-space, normal));
+    text-overflow: var(--text-overflow-tablet, var(--text-overflow, clip));
+
+    /* Flexbox */
+    flex-direction: var(--flex-direction-tablet, var(--flex-direction, row));
+    justify-content: var(
+      --justify-content-tablet,
+      var(--justify-content, flex-start)
+    );
+    align-items: var(--align-items-tablet, var(--align-items, stretch));
+    flex-wrap: var(--flex-wrap-tablet, var(--flex-wrap, nowrap));
+    flex: var(--flex-tablet, var(--flex, 0 1 auto));
+
+    /* Grid */
+    grid-template-columns: var(
+      --grid-template-columns-tablet,
+      var(--grid-template-columns, none)
+    );
+    grid-template-rows: var(
+      --grid-template-rows-tablet,
+      var(--grid-template-rows, none)
+    );
+    grid-template-areas: var(
+      --grid-template-areas-tablet,
+      var(--grid-template-areas, none)
+    );
+    grid-area: var(--grid-area-tablet, var(--grid-area, none));
+    grid-column: var(--grid-column-tablet, var(--grid-column, none));
+    grid-row: var(--grid-row-tablet, var(--grid-row, none));
+    grid-column-start: var(
+      --grid-column-start-tablet,
+      var(--grid-column-start, none)
+    );
+    grid-column-end: var(
+      --grid-column-end-tablet,
+      var(--grid-column-end, none)
+    );
+    grid-row-start: var(--grid-row-start-tablet, var(--grid-row-start, none));
+    grid-row-end: var(--grid-row-end-tablet, var(--grid-row-end, none));
+    grid-auto-flow: var(--grid-auto-flow-tablet, var(--grid-auto-flow, none));
+    grid-auto-columns: var(
+      --grid-auto-columns-tablet,
+      var(--grid-auto-columns, none)
+    );
+    grid-auto-rows: var(--grid-auto-rows-tablet, var(--grid-auto-rows, none));
+    gap: var(--gap-tablet, var(--gap, 0));
+
+    /* Transform */
+    transform: var(--transform-tablet, var(--transform, none));
+    transition: var(--transition-tablet, var(--transition, none));
+
+    /* Overflow */
+    overflow: var(--overflow-tablet, var(--overflow, visible));
+    overflow-x: var(--overflow-x-tablet, var(--overflow-x, visible));
+    overflow-y: var(--overflow-y-tablet, var(--overflow-y, visible));
+
+    /* Additional CSS properties */
+    box-shadow: var(--box-shadow-tablet, var(--box-shadow, none));
+    cursor: var(--cursor-tablet, var(--cursor, default));
+  }
+}
+
+@media (min-width: 1024px) {
+  .box {
+    /* Display */
+    display: var(
+      --display-desktop,
+      var(--display-tablet, var(--display, block))
+    );
+
+    /* Layout */
+    position: var(
+      --position-desktop,
+      var(--position-tablet, var(--position, static))
+    );
+    top: var(--top-desktop, var(--top-tablet, var(--top, auto)));
+    right: var(--right-desktop, var(--right-tablet, var(--right, auto)));
+    bottom: var(--bottom-desktop, var(--bottom-tablet, var(--bottom, auto)));
+    left: var(--left-desktop, var(--left-tablet, var(--left, auto)));
+    z-index: var(
+      --z-index-desktop,
+      var(--z-index-tablet, var(--z-index, auto))
+    );
+
+    /* Box Model */
+    width: var(--width-desktop, var(--width-tablet, var(--width, auto)));
+    height: var(--height-desktop, var(--height-tablet, var(--height, auto)));
+    min-width: var(
+      --min-width-desktop,
+      var(--min-width-tablet, var(--min-width, auto))
+    );
+    min-height: var(
+      --min-height-desktop,
+      var(--min-height-tablet, var(--min-height, auto))
+    );
+    max-width: var(
+      --max-width-desktop,
+      var(--max-width-tablet, var(--max-width, none))
+    );
+    max-height: var(
+      --max-height-desktop,
+      var(--max-height-tablet, var(--max-height, none))
+    );
+
+    /* Spacing */
+    margin: var(--margin-desktop, var(--margin-tablet, var(--margin, 0)));
+    margin-top: var(
+      --margin-top-desktop,
+      var(--margin-top-tablet, var(--margin-top, 0))
+    );
+    margin-right: var(
+      --margin-right-desktop,
+      var(--margin-right-tablet, var(--margin-right, 0))
+    );
+    margin-bottom: var(
+      --margin-bottom-desktop,
+      var(--margin-bottom-tablet, var(--margin-bottom, 0))
+    );
+    margin-left: var(
+      --margin-left-desktop,
+      var(--margin-left-tablet, var(--margin-left, 0))
+    );
+    padding: var(--padding-desktop, var(--padding-tablet, var(--padding, 0)));
+    padding-top: var(
+      --padding-top-desktop,
+      var(--padding-top-tablet, var(--padding-top, 0))
+    );
+    padding-right: var(
+      --padding-right-desktop,
+      var(--padding-right-tablet, var(--padding-right, 0))
+    );
+    padding-bottom: var(
+      --padding-bottom-desktop,
+      var(--padding-bottom-tablet, var(--padding-bottom, 0))
+    );
+    padding-left: var(
+      --padding-left-desktop,
+      var(--padding-left-tablet, var(--padding-left, 0))
+    );
+
+    /* Border */
+    border: var(--border-desktop, var(--border-tablet, var(--border, none)));
+    border-radius: var(
+      --border-radius-desktop,
+      var(--border-radius-tablet, var(--border-radius, 0))
+    );
+    border-color: var(
+      --border-color-desktop,
+      var(--border-color-tablet, var(--border-color, transparent))
+    );
+    border-style: var(
+      --border-style-desktop,
+      var(--border-style-tablet, var(--border-style, none))
+    );
+    border-width: var(
+      --border-width-desktop,
+      var(--border-width-tablet, var(--border-width, 0))
+    );
+
+    /* Background */
+    background-color: var(
+      --background-color-desktop,
+      var(--background-color-tablet, var(--background-color, transparent))
+    );
+    background-image: var(
+      --background-image-desktop,
+      var(--background-image-tablet, var(--background-image, none))
+    );
+
+    /* Typography */
+    font-size: var(
+      --font-size-desktop,
+      var(--font-size-tablet, var(--font-size, 16px))
+    );
+    font-weight: var(
+      --font-weight-desktop,
+      var(--font-weight-tablet, var(--font-weight, 400))
+    );
+    text-align: var(
+      --text-align-desktop,
+      var(--text-align-tablet, var(--text-align, left))
+    );
+    color: var(--color-desktop, var(--color-tablet, var(--color, inherit)));
+    line-height: var(
+      --line-height-desktop,
+      var(--line-height-tablet, var(--line-height, 1.5))
+    );
+    letter-spacing: var(
+      --letter-spacing-desktop,
+      var(--letter-spacing-tablet, var(--letter-spacing, normal))
+    );
+    text-decoration: var(
+      --text-decoration-desktop,
+      var(--text-decoration-tablet, var(--text-decoration, none))
+    );
+    text-transform: var(
+      --text-transform-desktop,
+      var(--text-transform-tablet, var(--text-transform, none))
+    );
+    font-family: var(
+      --font-family-desktop,
+      var(--font-family-tablet, var(--font-family, inherit))
+    );
+    font-style: var(
+      --font-style-desktop,
+      var(--font-style-tablet, var(--font-style, normal))
+    );
+    white-space: var(
+      --white-space-desktop,
+      var(--white-space-tablet, var(--white-space, normal))
+    );
+    text-overflow: var(
+      --text-overflow-desktop,
+      var(--text-overflow-tablet, var(--text-overflow, clip))
+    );
+
+    /* Flexbox */
+    flex-direction: var(
+      --flex-direction-desktop,
+      var(--flex-direction-tablet, var(--flex-direction, row))
+    );
+    justify-content: var(
+      --justify-content-desktop,
+      var(--justify-content-tablet, var(--justify-content, flex-start))
+    );
+    align-items: var(
+      --align-items-desktop,
+      var(--align-items-tablet, var(--align-items, stretch))
+    );
+    flex-wrap: var(
+      --flex-wrap-desktop,
+      var(--flex-wrap-tablet, var(--flex-wrap, nowrap))
+    );
+    flex: var(--flex-desktop, var(--flex-tablet, var(--flex, 0 1 auto)));
+
+    /* Grid */
+    grid-template-columns: var(
+      --grid-template-columns-desktop,
+      var(--grid-template-columns-tablet, var(--grid-template-columns, none))
+    );
+    grid-template-rows: var(
+      --grid-template-rows-desktop,
+      var(--grid-template-rows-tablet, var(--grid-template-rows, none))
+    );
+    grid-template-areas: var(
+      --grid-template-areas-desktop,
+      var(--grid-template-areas-tablet, var(--grid-template-areas, none))
+    );
+    grid-area: var(
+      --grid-area-desktop,
+      var(--grid-area-tablet, var(--grid-area, none))
+    );
+    grid-column: var(
+      --grid-column-desktop,
+      var(--grid-column-tablet, var(--grid-column, none))
+    );
+    grid-row: var(
+      --grid-row-desktop,
+      var(--grid-row-tablet, var(--grid-row, none))
+    );
+    grid-column-start: var(
+      --grid-column-start-desktop,
+      var(--grid-column-start-tablet, var(--grid-column-start, none))
+    );
+    grid-column-end: var(
+      --grid-column-end-desktop,
+      var(--grid-column-end-tablet, var(--grid-column-end, none))
+    );
+    grid-row-start: var(
+      --grid-row-start-desktop,
+      var(--grid-row-start-tablet, var(--grid-row-start, none))
+    );
+    grid-row-end: var(
+      --grid-row-end-desktop,
+      var(--grid-row-end-tablet, var(--grid-row-end, none))
+    );
+    grid-auto-flow: var(
+      --grid-auto-flow-desktop,
+      var(--grid-auto-flow-tablet, var(--grid-auto-flow, none))
+    );
+    grid-auto-columns: var(
+      --grid-auto-columns-desktop,
+      var(--grid-auto-columns-tablet, var(--grid-auto-columns, none))
+    );
+    grid-auto-rows: var(
+      --grid-auto-rows-desktop,
+      var(--grid-auto-rows-tablet, var(--grid-auto-rows, none))
+    );
+    gap: var(--gap-desktop, var(--gap-tablet, var(--gap, 0)));
+
+    /* Transform */
+    transform: var(
+      --transform-desktop,
+      var(--transform-tablet, var(--transform, none))
+    );
+    transition: var(
+      --transition-desktop,
+      var(--transition-tablet, var(--transition, none))
+    );
+
+    /* Overflow */
+    overflow: var(
+      --overflow-desktop,
+      var(--overflow-tablet, var(--overflow, visible))
+    );
+    overflow-x: var(
+      --overflow-x-desktop,
+      var(--overflow-x-tablet, var(--overflow-x, visible))
+    );
+    overflow-y: var(
+      --overflow-y-desktop,
+      var(--overflow-y-tablet, var(--overflow-y, visible))
+    );
+
+    /* Additional CSS properties */
+    box-shadow: var(
+      --box-shadow-desktop,
+      var(--box-shadow-tablet, var(--box-shadow, none))
+    );
+    cursor: var(--cursor-desktop, var(--cursor-tablet, var(--cursor, default)));
+  }
+}
