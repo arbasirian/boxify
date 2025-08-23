@@ -32,6 +32,17 @@ yarn add boxify-react
 pnpm add boxify-react
 ```
 
+### CSS Import
+
+After installation, you need to import the CSS file to ensure the styles work properly:
+
+```tsx
+// In your main entry file (e.g., App.tsx, main.tsx, or index.tsx)
+import "boxify-react/dist/index.css";
+```
+
+**Note**: The CSS import is required for the Box component's responsive styles and CSS custom properties to function correctly.
+
 ## 🚀 Quick Start
 
 ```tsx
