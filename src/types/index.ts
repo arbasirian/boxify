@@ -6,6 +6,7 @@ export interface BaseProps {
   className?: string;
   style?: React.CSSProperties;
   as?: "div" | "span" | "label" | "section";
+  hasMirror?: boolean;
 }
 
 // CSS properties that can be applied (excluding HTML attributes to avoid conflicts)
@@ -107,17 +108,13 @@ export interface CSSProps {
 
 // Responsive breakpoint types
 export type Breakpoint = "mobile" | "tablet" | "desktop";
-
-// Responsive overrides for specific breakpoints
-export interface ResponsiveOverrides {
+export interface BoxCssProps extends CSSProps {
   mobile?: Partial<CSSProps>;
   tablet?: Partial<CSSProps>;
   desktop?: Partial<CSSProps>;
 }
-
-// Combined props for the Box component
-export interface BoxProps
+export interface BoxNonCssProps
   extends BaseProps,
-    CSSProps,
-    ResponsiveOverrides,
     Omit<React.HTMLAttributes<HTMLElement>, keyof CSSProps | keyof BaseProps> {}
+// Combined props for the Box component
+export interface BoxProps extends BoxCssProps, BoxNonCssProps {}

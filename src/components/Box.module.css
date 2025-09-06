@@ -1,1026 +1,1034 @@
-.bxDisplay {
-  display: var(--display, block);
+[dir="rtl"] .bx_hasMirror {
+  transform: scale(-1, 1);
 }
 
-.bxPosition {
-  position: var(--position, static);
+.bx_display {
+  display: var(--display, initial);
 }
 
-.bxTop {
-  top: var(--top, auto);
+.bx_position {
+  position: var(--position, initial);
 }
 
-.bxRight {
-  right: var(--right, auto);
+.bx_top {
+  top: var(--top, initial);
 }
 
-.bxBottom {
-  bottom: var(--bottom, auto);
+.bx_right {
+  right: var(--right, initial);
 }
 
-.bxLeft {
-  left: var(--left, auto);
+.bx_bottom {
+  bottom: var(--bottom, initial);
 }
 
-.bxZIndex {
-  z-index: var(--z-index, auto);
+.bx_left {
+  left: var(--left, initial);
+}
+
+.bx_zIndex {
+  z-index: var(--zIndex, initial);
 }
 
 /* Box Model */
-.bxWidth {
-  width: var(--width, auto);
+.bx_width {
+  width: var(--width, initial);
 }
 
-.bxHeight {
-  height: var(--height, auto);
+.bx_height {
+  height: var(--height, initial);
 }
 
-.bxMinWidth {
-  min-width: var(--min-width, 0);
+.bx_minWidth {
+  min-width: var(--minWidth, initial);
 }
 
-.bxMinHeight {
-  min-height: var(--min-height, 0);
+.bx_minHeight {
+  min-height: var(--minHeight, initial);
 }
 
-.bxMaxWidth {
-  max-width: var(--max-width, none);
+.bx_maxWidth {
+  max-width: var(--maxWidth, initial);
 }
 
-.bxMaxHeight {
-  max-height: var(--max-height, none);
+.bx_maxHeight {
+  max-height: var(--maxHeight, initial);
 }
 
 /* Spacing */
-.bxMargin {
-  margin: var(--margin, 0);
+.bx_margin {
+  margin: var(--margin, initial);
 }
 
-.bxMarginTop {
-  margin-top: var(--margin-top, 0);
+.bx_marginTop {
+  margin-top: var(--marginTop, initial);
 }
 
-.bxMarginRight {
-  margin-right: var(--margin-right, 0);
+.bx_marginRight {
+  margin-right: var(--marginRight, initial);
 }
 
-.bxMarginBottom {
-  margin-bottom: var(--margin-bottom, 0);
+.bx_marginBottom {
+  margin-bottom: var(--marginBottom, initial);
 }
 
-.bxMarginLeft {
-  margin-left: var(--margin-left, 0);
+.bx_marginLeft {
+  margin-left: var(--marginLeft, initial);
 }
 
-.bxPadding {
-  padding: var(--padding, 0);
+.bx_padding {
+  padding: var(--padding, initial);
 }
 
-.bxPaddingTop {
-  padding-top: var(--padding-top, 0);
+.bx_paddingTop {
+  padding-top: var(--paddingTop, initial);
 }
 
-.bxPaddingRight {
-  padding-right: var(--padding-right, 0);
+.bx_paddingRight {
+  padding-right: var(--paddingRight, initial);
 }
 
-.bxPaddingBottom {
-  padding-bottom: var(--padding-bottom, 0);
+.bx_paddingBottom {
+  padding-bottom: var(--paddingBottom, initial);
 }
 
-.bxPaddingLeft {
-  padding-left: var(--padding-left, 0);
+.bx_paddingLeft {
+  padding-left: var(--paddingLeft, initial);
 }
 
 /* Border */
-.bxBorder {
-  border: var(--border, none);
+.bx_border {
+  border: var(--border, initial);
 }
 
-.bxBorderRadius {
-  border-radius: var(--border-radius, 0);
+.bx_borderRadius {
+  border-radius: var(--borderRadius, initial);
 }
 
-.bxBorderColor {
-  border-color: var(--border-color, currentColor);
+.bx_borderColor {
+  border-color: var(--borderColor, initial);
 }
 
-.bxBorderStyle {
-  border-style: var(--border-style, solid);
+.bx_borderStyle {
+  border-style: var(--borderStyle, initial);
 }
 
-.bxBorderWidth {
-  border-width: var(--border-width, medium);
+.bx_borderWidth {
+  border-width: var(--borderWidth, initial);
 }
 
 /* Background */
-.bxBackgroundColor {
-  background-color: var(--background-color, transparent);
+.bx_backgroundColor {
+  background-color: var(--backgroundColor, initial);
 }
 
-.bxBackgroundImage {
-  background-image: var(--background-image, none);
+.bx_backgroundImage {
+  background-image: var(--backgroundImage, initial);
 }
 
 /* Typography */
-.bxFontSize {
-  font-size: var(--font-size, medium);
+.bx_fontSize {
+  font-size: var(--fontSize, initial);
 }
 
-.bxFontWeight {
-  font-weight: var(--font-weight, normal);
+.bx_fontWeight {
+  font-weight: var(--fontWeight, initial);
 }
 
-.bxTextAlign {
-  text-align: var(--text-align, left);
+.bx_textAlign {
+  text-align: var(--textAlign, initial);
 }
 
-.bxColor {
-  color: var(--color, inherit);
+.bx_color {
+  color: var(--color, initial);
 }
 
-.bxLineHeight {
-  line-height: var(--line-height, normal);
+.bx_lineHeight {
+  line-height: var(--lineHeight, initial);
 }
 
-.bxLetterSpacing {
-  letter-spacing: var(--letter-spacing, normal);
+.bx_letterSpacing {
+  letter-spacing: var(--letterSpacing, initial);
 }
 
-.bxTextDecoration {
-  text-decoration: var(--text-decoration, none);
+.bx_textDecoration {
+  text-decoration: var(--textDecoration, initial);
 }
 
-.bxTextTransform {
-  text-transform: var(--text-transform, none);
+.bx_textTransform {
+  text-transform: var(--textTransform, initial);
 }
 
-.bxFontFamily {
-  font-family: var(--font-family, inherit);
+.bx_fontFamily {
+  font-family: var(--fontFamily, initial);
 }
 
-.bxFontStyle {
-  font-style: var(--font-style, normal);
+.bx_fontStyle {
+  font-style: var(--fontStyle, initial);
 }
 
-.bxWhiteSpace {
-  white-space: var(--white-space, normal);
+.bx_whiteSpace {
+  white-space: var(--whiteSpace, initial);
 }
 
-.bxTextOverflow {
-  text-overflow: var(--text-overflow, clip);
+.bx_textOverflow {
+  text-overflow: var(--textOverflow, initial);
 }
 
 /* Flexbox */
-.bxFlexDirection {
-  flex-direction: var(--flex-direction, row);
+.bx_flexDirection {
+  flex-direction: var(--flexDirection, initial);
 }
 
-.bxJustifyContent {
-  justify-content: var(--justify-content, flex-start);
+.bx_justifyContent {
+  justify-content: var(--justifyContent, initial);
 }
 
-.bxAlignItems {
-  align-items: var(--align-items, stretch);
+.bx_alignItems {
+  align-items: var(--alignItems, initial);
 }
 
-.bxFlexWrap {
-  flex-wrap: var(--flex-wrap, nowrap);
+.bx_flexWrap {
+  flex-wrap: var(--flexWrap, initial);
 }
 
-.bxFlex {
-  flex: var(--flex, 0 1 auto);
+.bx_flex {
+  flex: var(--flex, initial);
 }
 
 /* Grid */
-.bxGridTemplateColumns {
-  grid-template-columns: var(--grid-template-columns, none);
+.bx_gridTemplateColumns {
+  grid-template-columns: var(--gridTemplateColumns, initial);
 }
 
-.bxGridTemplateRows {
-  grid-template-rows: var(--grid-template-rows, none);
+.bx_gridTemplateRows {
+  grid-template-rows: var(--gridTemplateRows, initial);
 }
 
-.bxGridTemplateAreas {
-  grid-template-areas: var(--grid-template-areas, none);
+.bx_gridTemplateAreas {
+  grid-template-areas: var(--gridTemplateAreas, initial);
 }
 
-.bxGridArea {
-  grid-area: var(--grid-area, auto);
+.bx_gridArea {
+  grid-area: var(--gridArea, initial);
 }
 
-.bxGridColumn {
-  grid-column: var(--grid-column, auto);
+.bx_gridColumn {
+  grid-column: var(--gridColumn, initial);
 }
 
-.bxGridRow {
-  grid-row: var(--grid-row, auto);
+.bx_gridRow {
+  grid-row: var(--gridRow, initial);
 }
 
-.bxGridColumnStart {
-  grid-column-start: var(--grid-column-start, auto);
+.bx_gridColumnStart {
+  grid-column-start: var(--gridColumnStart, initial);
 }
 
-.bxGridColumnEnd {
-  grid-column-end: var(--grid-column-end, auto);
+.bx_gridColumnEnd {
+  grid-column-end: var(--gridColumnEnd, initial);
 }
 
-.bxGridRowStart {
-  grid-row-start: var(--grid-row-start, auto);
+.bx_gridRowStart {
+  grid-row-start: var(--gridRowStart, initial);
 }
 
-.bxGridRowEnd {
-  grid-row-end: var(--grid-row-end, auto);
+.bx_gridRowEnd {
+  grid-row-end: var(--gridRowEnd, initial);
 }
 
-.bxGridAutoFlow {
-  grid-auto-flow: var(--grid-auto-flow, row);
+.bx_gridAutoFlow {
+  grid-auto-flow: var(--gridAutoFlow, initial);
 }
 
-.bxGridAutoColumns {
-  grid-auto-columns: var(--grid-auto-columns, auto);
+.bx_gridAutoColumns {
+  grid-auto-columns: var(--gridAutoColumns, initial);
 }
 
-.bxGridAutoRows {
-  grid-auto-rows: var(--grid-auto-rows, auto);
+.bx_gridAutoRows {
+  grid-auto-rows: var(--gridAutoRows, initial);
 }
 
-.bxGap {
-  gap: var(--gap, normal);
+.bx_gap {
+  gap: var(--gap, initial);
 }
 
 /* Transform */
-.bxTransform {
-  transform: var(--transform, none);
+.bx_transform {
+  transform: var(--transform, initial);
 }
 
-.bxTransition {
-  transition: var(--transition, all 0s ease 0s);
+.bx_transition {
+  transition: var(--transition, initial);
 }
 
 /* Overflow */
-.bxOverflow {
-  overflow: var(--overflow, visible);
+.bx_overflow {
+  overflow: var(--overflow, initial);
 }
 
-.bxOverflowX {
-  overflow-x: var(--overflow-x, visible);
+.bx_overflowX {
+  overflow-x: var(--overflowX, initial);
 }
 
-.bxOverflowY {
-  overflow-y: var(--overflow-y, visible);
+.bx_overflowY {
+  overflow-y: var(--overflowY, initial);
 }
 
 /* Additional CSS properties */
-.bxBoxShadow {
-  box-shadow: var(--box-shadow, none);
+.bx_boxShadow {
+  box-shadow: var(--boxShadow, initial);
 }
 
-.bxCursor {
-  cursor: var(--cursor, auto);
+.bx_cursor {
+  cursor: var(--cursor, initial);
+}
+
+/* Mobile styles (320px+) */
+@media (max-width: 767px) {
 }
 
 /* Tablet styles (768px+) */
 @media (min-width: 768px) {
-  .bxDisplay {
-    display: var(--display-tablet, var(--display, block));
+  .bx_display_tablet {
+    display: var(--display-tablet, var(--display, initial));
   }
 
-  .bxPosition {
-    position: var(--position-tablet, var(--position, static));
+  .bx_position_tablet {
+    position: var(--position-tablet, var(--position, initial));
   }
 
-  .bxTop {
-    top: var(--top-tablet, var(--top, auto));
+  .bx_top_tablet {
+    top: var(--top-tablet, var(--top, initial));
   }
 
-  .bxRight {
-    right: var(--right-tablet, var(--right, auto));
+  .bx_right_tablet {
+    right: var(--right-tablet, var(--right, initial));
   }
 
-  .bxBottom {
-    bottom: var(--bottom-tablet, var(--bottom, auto));
+  .bx_bottom_tablet {
+    bottom: var(--bottom-tablet, var(--bottom, initial));
   }
 
-  .bxLeft {
-    left: var(--left-tablet, var(--left, auto));
+  .bx_left_tablet {
+    left: var(--left-tablet, var(--left, initial));
   }
 
-  .bxZIndex {
-    z-index: var(--z-index-tablet, var(--z-index, auto));
+  .bx_zIndex_tablet {
+    z-index: var(--zIndex-tablet, var(--zIndex, initial));
   }
 
-  .bxWidth {
-    width: var(--width-tablet, var(--width, auto));
+  .bx_width_tablet {
+    width: var(--width-tablet, var(--width, initial));
   }
 
-  .bxHeight {
-    height: var(--height-tablet, var(--height, auto));
+  .bx_height_tablet {
+    height: var(--height-tablet, var(--height, initial));
   }
 
-  .bxMinWidth {
-    min-width: var(--min-width-tablet, var(--min-width, 0));
+  .bx_minWidth_tablet {
+    min-width: var(--minWidth-tablet, var(--minWidth, initial));
   }
 
-  .bxMinHeight {
-    min-height: var(--min-height-tablet, var(--min-height, 0));
+  .bx_minHeight_tablet {
+    min-height: var(--minHeight-tablet, var(--minHeight, initial));
   }
 
-  .bxMaxWidth {
-    max-width: var(--max-width-tablet, var(--max-width, none));
+  .bx_maxWidth_tablet {
+    max-width: var(--maxWidth-tablet, var(--maxWidth, initial));
   }
 
-  .bxMaxHeight {
-    max-height: var(--max-height-tablet, var(--max-height, none));
+  .bx_maxHeight_tablet {
+    max-height: var(--maxHeight-tablet, var(--maxHeight, initial));
   }
 
-  .bxMargin {
-    margin: var(--margin-tablet, var(--margin, 0));
+  .bx_margin_tablet {
+    margin: var(--margin-tablet, var(--margin, initial));
   }
 
-  .bxMarginTop {
-    margin-top: var(--margin-top-tablet, var(--margin-top, 0));
+  .bx_marginTop_tablet {
+    margin-top: var(--marginTop-tablet, var(--marginTop, initial));
   }
 
-  .bxMarginRight {
-    margin-right: var(--margin-right-tablet, var(--margin-right, 0));
+  .bx_marginRight_tablet {
+    margin-right: var(--marginRight-tablet, var(--marginRight, initial));
   }
 
-  .bxMarginBottom {
-    margin-bottom: var(--margin-bottom-tablet, var(--margin-bottom, 0));
+  .bx_marginBottom_tablet {
+    margin-bottom: var(--marginBottom-tablet, var(--marginBottom, initial));
   }
 
-  .bxMarginLeft {
-    margin-left: var(--margin-left-tablet, var(--margin-left, 0));
+  .bx_marginLeft_tablet {
+    margin-left: var(--marginLeft-tablet, var(--marginLeft, initial));
   }
 
-  .bxPadding {
-    padding: var(--padding-tablet, var(--padding, 0));
+  .bx_padding_tablet {
+    padding: var(--padding-tablet, var(--padding, initial));
   }
 
-  .bxPaddingTop {
-    padding-top: var(--padding-top-tablet, var(--padding-top, 0));
+  .bx_paddingTop_tablet {
+    padding-top: var(--paddingTop-tablet, var(--paddingTop, initial));
   }
 
-  .bxPaddingRight {
-    padding-right: var(--padding-right-tablet, var(--padding-right, 0));
+  .bx_paddingRight_tablet {
+    padding-right: var(--paddingRight-tablet, var(--paddingRight, initial));
   }
 
-  .bxPaddingBottom {
-    padding-bottom: var(--padding-bottom-tablet, var(--padding-bottom, 0));
+  .bx_paddingBottom_tablet {
+    padding-bottom: var(--paddingBottom-tablet, var(--paddingBottom, initial));
   }
 
-  .bxPaddingLeft {
-    padding-left: var(--padding-left-tablet, var(--padding-left, 0));
+  .bx_paddingLeft_tablet {
+    padding-left: var(--paddingLeft-tablet, var(--paddingLeft, initial));
   }
 
-  .bxBorder {
-    border: var(--border-tablet, var(--border, none));
+  .bx_border_tablet {
+    border: var(--border-tablet, var(--border, initial));
   }
 
-  .bxBorderRadius {
-    border-radius: var(--border-radius-tablet, var(--border-radius, 0));
+  .bx_borderRadius_tablet {
+    border-radius: var(--borderRadius-tablet, var(--borderRadius, initial));
   }
 
-  .bxBorderColor {
-    border-color: var(--border-color-tablet, var(--border-color, currentColor));
+  .bx_borderColor_tablet {
+    border-color: var(--borderColor-tablet, var(--borderColor, initial));
   }
 
-  .bxBorderStyle {
-    border-style: var(--border-style-tablet, var(--border-style, solid));
+  .bx_borderStyle_tablet {
+    border-style: var(--borderStyle-tablet, var(--borderStyle, initial));
   }
 
-  .bxBorderWidth {
-    border-width: var(--border-width-tablet, var(--border-width, medium));
+  .bx_borderWidth_tablet {
+    border-width: var(--borderWidth-tablet, var(--borderWidth, initial));
   }
 
-  .bxBackgroundColor {
+  .bx_backgroundColor_tablet {
     background-color: var(
-      --background-color-tablet,
-      var(--background-color, transparent)
+      --backgroundColor-tablet,
+      var(--backgroundColor, initial)
     );
   }
 
-  .bxBackgroundImage {
+  .bx_backgroundImage_tablet {
     background-image: var(
-      --background-image-tablet,
-      var(--background-image, none)
+      --backgroundImage-tablet,
+      var(--backgroundImage, initial)
     );
   }
 
-  .bxFontSize {
-    font-size: var(--font-size-tablet, var(--font-size, medium));
+  .bx_fontSize_tablet {
+    font-size: var(--fontSize-tablet, var(--fontSize, initial));
   }
 
-  .bxFontWeight {
-    font-weight: var(--font-weight-tablet, var(--font-weight, normal));
+  .bx_fontWeight_tablet {
+    font-weight: var(--fontWeight-tablet, var(--fontWeight, initial));
   }
 
-  .bxTextAlign {
-    text-align: var(--text-align-tablet, var(--text-align, left));
+  .bx_textAlign_tablet {
+    text-align: var(--textAlign-tablet, var(--textAlign, initial));
   }
 
-  .bxColor {
-    color: var(--color-tablet, var(--color, inherit));
+  .bx_color_tablet {
+    color: var(--color-tablet, var(--color, initial));
   }
 
-  .bxLineHeight {
-    line-height: var(--line-height-tablet, var(--line-height, normal));
+  .bx_lineHeight_tablet {
+    line-height: var(--lineHeight-tablet, var(--lineHeight, initial));
   }
 
-  .bxLetterSpacing {
-    letter-spacing: var(--letter-spacing-tablet, var(--letter-spacing, normal));
+  .bx_letterSpacing_tablet {
+    letter-spacing: var(--letterSpacing-tablet, var(--letterSpacing, initial));
   }
 
-  .bxTextDecoration {
+  .bx_textDecoration_tablet {
     text-decoration: var(
-      --text-decoration-tablet,
-      var(--text-decoration, none)
+      --textDecoration-tablet,
+      var(--textDecoration, initial)
     );
   }
 
-  .bxTextTransform {
-    text-transform: var(--text-transform-tablet, var(--text-transform, none));
+  .bx_textTransform_tablet {
+    text-transform: var(--textTransform-tablet, var(--textTransform, initial));
   }
 
-  .bxFontFamily {
-    font-family: var(--font-family-tablet, var(--font-family, inherit));
+  .bx_fontFamily_tablet {
+    font-family: var(--fontFamily-tablet, var(--fontFamily, initial));
   }
 
-  .bxFontStyle {
-    font-style: var(--font-style-tablet, var(--font-style, normal));
+  .bx_fontStyle_tablet {
+    font-style: var(--fontStyle-tablet, var(--fontStyle, initial));
   }
 
-  .bxWhiteSpace {
-    white-space: var(--white-space-tablet, var(--white-space, normal));
+  .bx_whiteSpace_tablet {
+    white-space: var(--whiteSpace-tablet, var(--whiteSpace, initial));
   }
 
-  .bxTextOverflow {
-    text-overflow: var(--text-overflow-tablet, var(--text-overflow, clip));
+  .bx_textOverflow_tablet {
+    text-overflow: var(--textOverflow-tablet, var(--textOverflow, initial));
   }
 
-  .bxFlexDirection {
-    flex-direction: var(--flex-direction-tablet, var(--flex-direction, row));
+  .bx_flexDirection_tablet {
+    flex-direction: var(--flexDirection-tablet, var(--flexDirection, initial));
   }
 
-  .bxJustifyContent {
+  .bx_justifyContent_tablet {
     justify-content: var(
-      --justify-content-tablet,
-      var(--justify-content, flex-start)
+      --justifyContent-tablet,
+      var(--justifyContent, initial)
     );
   }
 
-  .bxAlignItems {
-    align-items: var(--align-items-tablet, var(--align-items, stretch));
+  .bx_alignItems_tablet {
+    align-items: var(--alignItems-tablet, var(--alignItems, initial));
   }
 
-  .bxFlexWrap {
-    flex-wrap: var(--flex-wrap-tablet, var(--flex-wrap, nowrap));
+  .bx_flexWrap_tablet {
+    flex-wrap: var(--flexWrap-tablet, var(--flexWrap, initial));
   }
 
-  .bxFlex {
-    flex: var(--flex-tablet, var(--flex, 0 1 auto));
+  .bx_flex_tablet {
+    flex: var(--flex-tablet, var(--flex, initial));
   }
 
-  .bxGridTemplateColumns {
+  .bx_gridTemplateColumns_tablet {
     grid-template-columns: var(
-      --grid-template-columns-tablet,
-      var(--grid-template-columns, none)
+      --gridTemplateColumns-tablet,
+      var(--gridTemplateColumns, initial)
     );
   }
 
-  .bxGridTemplateRows {
+  .bx_gridTemplateRows_tablet {
     grid-template-rows: var(
-      --grid-template-rows-tablet,
-      var(--grid-template-rows, none)
+      --gridTemplateRows-tablet,
+      var(--gridTemplateRows, initial)
     );
   }
 
-  .bxGridTemplateAreas {
+  .bx_gridTemplateAreas_tablet {
     grid-template-areas: var(
-      --grid-template-areas-tablet,
-      var(--grid-template-areas, none)
+      --gridTemplateAreas-tablet,
+      var(--gridTemplateAreas, initial)
     );
   }
 
-  .bxGridArea {
-    grid-area: var(--grid-area-tablet, var(--grid-area, auto));
+  .bx_gridArea_tablet {
+    grid-area: var(--gridArea-tablet, var(--gridArea, initial));
   }
 
-  .bxGridColumn {
-    grid-column: var(--grid-column-tablet, var(--grid-column, auto));
+  .bx_gridColumn_tablet {
+    grid-column: var(--gridColumn-tablet, var(--gridColumn, initial));
   }
 
-  .bxGridRow {
-    grid-row: var(--grid-row-tablet, var(--grid-row, auto));
+  .bx_gridRow_tablet {
+    grid-row: var(--gridRow-tablet, var(--gridRow, initial));
   }
 
-  .bxGridColumnStart {
+  .bx_gridColumnStart_tablet {
     grid-column-start: var(
-      --grid-column-start-tablet,
-      var(--grid-column-start, auto)
+      --gridColumnStart-tablet,
+      var(--gridColumnStart, initial)
     );
   }
 
-  .bxGridColumnEnd {
-    grid-column-end: var(
-      --grid-column-end-tablet,
-      var(--grid-column-end, auto)
-    );
+  .bx_gridColumnEnd_tablet {
+    grid-column-end: var(--gridColumnEnd-tablet, var(--gridColumnEnd, initial));
   }
 
-  .bxGridRowStart {
-    grid-row-start: var(--grid-row-start-tablet, var(--grid-row-start, auto));
+  .bx_gridRowStart_tablet {
+    grid-row-start: var(--gridRowStart-tablet, var(--gridRowStart, initial));
   }
 
-  .bxGridRowEnd {
-    grid-row-end: var(--grid-row-end-tablet, var(--grid-row-end, auto));
+  .bx_gridRowEnd_tablet {
+    grid-row-end: var(--gridRowEnd-tablet, var(--gridRowEnd, initial));
   }
 
-  .bxGridAutoFlow {
-    grid-auto-flow: var(--grid-auto-flow-tablet, var(--grid-auto-flow, row));
+  .bx_gridAutoFlow_tablet {
+    grid-auto-flow: var(--gridAutoFlow-tablet, var(--gridAutoFlow, initial));
   }
 
-  .bxGridAutoColumns {
+  .bx_gridAutoColumns_tablet {
     grid-auto-columns: var(
-      --grid-auto-columns-tablet,
-      var(--grid-auto-columns, auto)
+      --gridAutoColumns-tablet,
+      var(--gridAutoColumns, initial)
     );
   }
 
-  .bxGridAutoRows {
-    grid-auto-rows: var(--grid-auto-rows-tablet, var(--grid-auto-rows, auto));
+  .bx_gridAutoRows_tablet {
+    grid-auto-rows: var(--gridAutoRows-tablet, var(--gridAutoRows, initial));
   }
 
-  .bxGap {
-    gap: var(--gap-tablet, var(--gap, normal));
+  .bx_gap_tablet {
+    gap: var(--gap-tablet, var(--gap, initial));
   }
 
-  .bxTransform {
-    transform: var(--transform-tablet, var(--transform, none));
+  .bx_transform_tablet {
+    transform: var(--transform-tablet, var(--transform, initial));
   }
 
-  .bxTransition {
-    transition: var(--transition-tablet, var(--transition, all 0s ease 0s));
+  .bx_transition_tablet {
+    transition: var(--transition-tablet, var(--transition, initial));
   }
 
-  .bxOverflow {
-    overflow: var(--overflow-tablet, var(--overflow, visible));
+  .bx_overflow_tablet {
+    overflow: var(--overflow-tablet, var(--overflow, initial));
   }
 
-  .bxOverflowX {
-    overflow-x: var(--overflow-x-tablet, var(--overflow-x, visible));
+  .bx_overflowX_tablet {
+    overflow-x: var(--overflowX-tablet, var(--overflowX, initial));
   }
 
-  .bxOverflowY {
-    overflow-y: var(--overflow-y-tablet, var(--overflow-y, visible));
+  .bx_overflowY_tablet {
+    overflow-y: var(--overflowY-tablet, var(--overflowY, initial));
   }
 
-  .bxBoxShadow {
-    box-shadow: var(--box-shadow-tablet, var(--box-shadow, none));
+  .bx_boxShadow_tablet {
+    box-shadow: var(--boxShadow-tablet, var(--boxShadow, initial));
   }
 
-  .bxCursor {
-    cursor: var(--cursor-tablet, var(--cursor, auto));
+  .bx_cursor_tablet {
+    cursor: var(--cursor-tablet, var(--cursor, initial));
   }
 }
 
 /* Desktop styles (1024px+) */
 @media (min-width: 1024px) {
-  .bxDisplay {
+  .bx_display_desktop {
     display: var(
       --display-desktop,
-      var(--display-tablet, var(--display, block))
+      var(--display-tablet, var(--display, initial))
     );
   }
 
-  .bxPosition {
+  .bx_position_desktop {
     position: var(
       --position-desktop,
-      var(--position-tablet, var(--position, static))
+      var(--position-tablet, var(--position, initial))
     );
   }
 
-  .bxTop {
-    top: var(--top-desktop, var(--top-tablet, var(--top, auto)));
+  .bx_top_desktop {
+    top: var(--top-desktop, var(--top-tablet, var(--top, initial)));
   }
 
-  .bxRight {
-    right: var(--right-desktop, var(--right-tablet, var(--right, auto)));
+  .bx_right_desktop {
+    right: var(--right-desktop, var(--right-tablet, var(--right, initial)));
   }
 
-  .bxBottom {
-    bottom: var(--bottom-desktop, var(--bottom-tablet, var(--bottom, auto)));
+  .bx_bottom_desktop {
+    bottom: var(--bottom-desktop, var(--bottom-tablet, var(--bottom, initial)));
   }
 
-  .bxLeft {
-    left: var(--left-desktop, var(--left-tablet, var(--left, auto)));
+  .bx_left_desktop {
+    left: var(--left-desktop, var(--left-tablet, var(--left, initial)));
   }
 
-  .bxZIndex {
+  .bx_zIndex_desktop {
     z-index: var(
-      --z-index-desktop,
-      var(--z-index-tablet, var(--z-index, auto))
+      --zIndex-desktop,
+      var(--zIndex-tablet, var(--zIndex, initial))
     );
   }
 
-  .bxWidth {
-    width: var(--width-desktop, var(--width-tablet, var(--width, auto)));
+  .bx_width_desktop {
+    width: var(--width-desktop, var(--width-tablet, var(--width, initial)));
   }
 
-  .bxHeight {
-    height: var(--height-desktop, var(--height-tablet, var(--height, auto)));
+  .bx_height_desktop {
+    height: var(--height-desktop, var(--height-tablet, var(--height, initial)));
   }
 
-  .bxMinWidth {
+  .bx_minWidth_desktop {
     min-width: var(
-      --min-width-desktop,
-      var(--min-width-tablet, var(--min-width, 0))
+      --minWidth-desktop,
+      var(--minWidth-tablet, var(--minWidth, initial))
     );
   }
 
-  .bxMinHeight {
+  .bx_minHeight_desktop {
     min-height: var(
-      --min-height-desktop,
-      var(--min-height-tablet, var(--min-height, 0))
+      --minHeight-desktop,
+      var(--minHeight-tablet, var(--minHeight, initial))
     );
   }
 
-  .bxMaxWidth {
+  .bx_maxWidth_desktop {
     max-width: var(
-      --max-width-desktop,
-      var(--max-width-tablet, var(--max-width, none))
+      --maxWidth-desktop,
+      var(--maxWidth-tablet, var(--maxWidth, initial))
     );
   }
 
-  .bxMaxHeight {
+  .bx_maxHeight_desktop {
     max-height: var(
-      --max-height-desktop,
-      var(--max-height-tablet, var(--max-height, none))
+      --maxHeight-desktop,
+      var(--maxHeight-tablet, var(--maxHeight, initial))
     );
   }
 
-  .bxMargin {
-    margin: var(--margin-desktop, var(--margin-tablet, var(--margin, 0)));
+  .bx_margin_desktop {
+    margin: var(--margin-desktop, var(--margin-tablet, var(--margin, initial)));
   }
 
-  .bxMarginTop {
+  .bx_marginTop_desktop {
     margin-top: var(
-      --margin-top-desktop,
-      var(--margin-top-tablet, var(--margin-top, 0))
+      --marginTop-desktop,
+      var(--marginTop-tablet, var(--marginTop, initial))
     );
   }
 
-  .bxMarginRight {
+  .bx_marginRight_desktop {
     margin-right: var(
-      --margin-right-desktop,
-      var(--margin-right-tablet, var(--margin-right, 0))
+      --marginRight-desktop,
+      var(--marginRight-tablet, var(--marginRight, initial))
     );
   }
 
-  .bxMarginBottom {
+  .bx_marginBottom_desktop {
     margin-bottom: var(
-      --margin-bottom-desktop,
-      var(--margin-bottom-tablet, var(--margin-bottom, 0))
+      --marginBottom-desktop,
+      var(--marginBottom-tablet, var(--marginBottom, initial))
     );
   }
 
-  .bxMarginLeft {
+  .bx_marginLeft_desktop {
     margin-left: var(
-      --margin-left-desktop,
-      var(--margin-left-tablet, var(--margin-left, 0))
+      --marginLeft-desktop,
+      var(--marginLeft-tablet, var(--marginLeft, initial))
     );
   }
 
-  .bxPadding {
-    padding: var(--padding-desktop, var(--padding-tablet, var(--padding, 0)));
+  .bx_padding_desktop {
+    padding: var(
+      --padding-desktop,
+      var(--padding-tablet, var(--padding, initial))
+    );
   }
 
-  .bxPaddingTop {
+  .bx_paddingTop_desktop {
     padding-top: var(
-      --padding-top-desktop,
-      var(--padding-top-tablet, var(--padding-top, 0))
+      --paddingTop-desktop,
+      var(--paddingTop-tablet, var(--paddingTop, initial))
     );
   }
 
-  .bxPaddingRight {
+  .bx_paddingRight_desktop {
     padding-right: var(
-      --padding-right-desktop,
-      var(--padding-right-tablet, var(--padding-right, 0))
+      --paddingRight-desktop,
+      var(--paddingRight-tablet, var(--paddingRight, initial))
     );
   }
 
-  .bxPaddingBottom {
+  .bx_paddingBottom_desktop {
     padding-bottom: var(
-      --padding-bottom-desktop,
-      var(--padding-bottom-tablet, var(--padding-bottom, 0))
+      --paddingBottom-desktop,
+      var(--paddingBottom-tablet, var(--paddingBottom, initial))
     );
   }
 
-  .bxPaddingLeft {
+  .bx_paddingLeft_desktop {
     padding-left: var(
-      --padding-left-desktop,
-      var(--padding-left-tablet, var(--padding-left, 0))
+      --paddingLeft-desktop,
+      var(--paddingLeft-tablet, var(--paddingLeft, initial))
     );
   }
 
-  .bxBorder {
-    border: var(--border-desktop, var(--border-tablet, var(--border, none)));
+  .bx_border_desktop {
+    border: var(--border-desktop, var(--border-tablet, var(--border, initial)));
   }
 
-  .bxBorderRadius {
+  .bx_borderRadius_desktop {
     border-radius: var(
-      --border-radius-desktop,
-      var(--border-radius-tablet, var(--border-radius, 0))
+      --borderRadius-desktop,
+      var(--borderRadius-tablet, var(--borderRadius, initial))
     );
   }
 
-  .bxBorderColor {
+  .bx_borderColor_desktop {
     border-color: var(
-      --border-color-desktop,
-      var(--border-color-tablet, var(--border-color, currentColor))
+      --borderColor-desktop,
+      var(--borderColor-tablet, var(--borderColor, initial))
     );
   }
 
-  .bxBorderStyle {
+  .bx_borderStyle_desktop {
     border-style: var(
-      --border-style-desktop,
-      var(--border-style-tablet, var(--border-style, solid))
+      --borderStyle-desktop,
+      var(--borderStyle-tablet, var(--borderStyle, initial))
     );
   }
 
-  .bxBorderWidth {
+  .bx_borderWidth_desktop {
     border-width: var(
-      --border-width-desktop,
-      var(--border-width-tablet, var(--border-width, medium))
+      --borderWidth-desktop,
+      var(--borderWidth-tablet, var(--borderWidth, initial))
     );
   }
 
-  .bxBackgroundColor {
+  .bx_backgroundColor_desktop {
     background-color: var(
-      --background-color-desktop,
-      var(--background-color-tablet, var(--background-color, transparent))
+      --backgroundColor-desktop,
+      var(--backgroundColor-tablet, var(--backgroundColor, initial))
     );
   }
 
-  .bxBackgroundImage {
+  .bx_backgroundImage_desktop {
     background-image: var(
-      --background-image-desktop,
-      var(--background-image-tablet, var(--background-image, none))
+      --backgroundImage-desktop,
+      var(--backgroundImage-tablet, var(--backgroundImage, initial))
     );
   }
 
-  .bxFontSize {
+  .bx_fontSize_desktop {
     font-size: var(
-      --font-size-desktop,
-      var(--font-size-tablet, var(--font-size, medium))
+      --fontSize-desktop,
+      var(--fontSize-tablet, var(--fontSize, initial))
     );
   }
 
-  .bxFontWeight {
+  .bx_fontWeight_desktop {
     font-weight: var(
-      --font-weight-desktop,
-      var(--font-weight-tablet, var(--font-weight, normal))
+      --fontWeight-desktop,
+      var(--fontWeight-tablet, var(--fontWeight, initial))
     );
   }
 
-  .bxTextAlign {
+  .bx_textAlign_desktop {
     text-align: var(
-      --text-align-desktop,
-      var(--text-align-tablet, var(--text-align, left))
+      --textAlign-desktop,
+      var(--textAlign-tablet, var(--textAlign, initial))
     );
   }
 
-  .bxColor {
-    color: var(--color-desktop, var(--color-tablet, var(--color, inherit)));
+  .bx_color_desktop {
+    color: var(--color-desktop, var(--color-tablet, var(--color, initial)));
   }
 
-  .bxLineHeight {
+  .bx_lineHeight_desktop {
     line-height: var(
-      --line-height-desktop,
-      var(--line-height-tablet, var(--line-height, normal))
+      --lineHeight-desktop,
+      var(--lineHeight-tablet, var(--lineHeight, initial))
     );
   }
 
-  .bxLetterSpacing {
+  .bx_letterSpacing_desktop {
     letter-spacing: var(
-      --letter-spacing-desktop,
-      var(--letter-spacing-tablet, var(--letter-spacing, normal))
+      --letterSpacing-desktop,
+      var(--letterSpacing-tablet, var(--letterSpacing, initial))
     );
   }
 
-  .bxTextDecoration {
+  .bx_textDecoration_desktop {
     text-decoration: var(
-      --text-decoration-desktop,
-      var(--text-decoration-tablet, var(--text-decoration, none))
+      --textDecoration-desktop,
+      var(--textDecoration-tablet, var(--textDecoration, initial))
     );
   }
 
-  .bxTextTransform {
+  .bx_textTransform_desktop {
     text-transform: var(
-      --text-transform-desktop,
-      var(--text-transform-tablet, var(--text-transform, none))
+      --textTransform-desktop,
+      var(--textTransform-tablet, var(--textTransform, initial))
     );
   }
 
-  .bxFontFamily {
+  .bx_fontFamily_desktop {
     font-family: var(
-      --font-family-desktop,
-      var(--font-family-tablet, var(--font-family, inherit))
+      --fontFamily-desktop,
+      var(--fontFamily-tablet, var(--fontFamily, initial))
     );
   }
 
-  .bxFontStyle {
+  .bx_fontStyle_desktop {
     font-style: var(
-      --font-style-desktop,
-      var(--font-style-tablet, var(--font-style, normal))
+      --fontStyle-desktop,
+      var(--fontStyle-tablet, var(--fontStyle, initial))
     );
   }
 
-  .bxWhiteSpace {
+  .bx_whiteSpace_desktop {
     white-space: var(
-      --white-space-desktop,
-      var(--white-space-tablet, var(--white-space, normal))
+      --whiteSpace-desktop,
+      var(--whiteSpace-tablet, var(--whiteSpace, initial))
     );
   }
 
-  .bxTextOverflow {
+  .bx_textOverflow_desktop {
     text-overflow: var(
-      --text-overflow-desktop,
-      var(--text-overflow-tablet, var(--text-overflow, clip))
+      --textOverflow-desktop,
+      var(--textOverflow-tablet, var(--textOverflow, initial))
     );
   }
 
-  .bxFlexDirection {
+  .bx_flexDirection_desktop {
     flex-direction: var(
-      --flex-direction-desktop,
-      var(--flex-direction-tablet, var(--flex-direction, row))
+      --flexDirection-desktop,
+      var(--flexDirection-tablet, var(--flexDirection, initial))
     );
   }
 
-  .bxJustifyContent {
+  .bx_justifyContent_desktop {
     justify-content: var(
-      --justify-content-desktop,
-      var(--justify-content-tablet, var(--justify-content, flex-start))
+      --justifyContent-desktop,
+      var(--justifyContent-tablet, var(--justifyContent, initial))
     );
   }
 
-  .bxAlignItems {
+  .bx_alignItems_desktop {
     align-items: var(
-      --align-items-desktop,
-      var(--align-items-tablet, var(--align-items, stretch))
+      --alignItems-desktop,
+      var(--alignItems-tablet, var(--alignItems, initial))
     );
   }
 
-  .bxFlexWrap {
+  .bx_flexWrap_desktop {
     flex-wrap: var(
-      --flex-wrap-desktop,
-      var(--flex-wrap-tablet, var(--flex-wrap, nowrap))
+      --flexWrap-desktop,
+      var(--flexWrap-tablet, var(--flexWrap, initial))
     );
   }
 
-  .bxFlex {
-    flex: var(--flex-desktop, var(--flex-tablet, var(--flex, 0 1 auto)));
+  .bx_flex_desktop {
+    flex: var(--flex-desktop, var(--flex-tablet, var(--flex, initial)));
   }
 
-  .bxGridTemplateColumns {
+  .bx_gridTemplateColumns_desktop {
     grid-template-columns: var(
-      --grid-template-columns-desktop,
-      var(--grid-template-columns-tablet, var(--grid-template-columns, none))
+      --gridTemplateColumns-desktop,
+      var(--gridTemplateColumns-tablet, var(--gridTemplateColumns, initial))
     );
   }
 
-  .bxGridTemplateRows {
+  .bx_gridTemplateRows_desktop {
     grid-template-rows: var(
-      --grid-template-rows-desktop,
-      var(--grid-template-rows-tablet, var(--grid-template-rows, none))
+      --gridTemplateRows-desktop,
+      var(--gridTemplateRows-tablet, var(--gridTemplateRows, initial))
     );
   }
 
-  .bxGridTemplateAreas {
+  .bx_gridTemplateAreas_desktop {
     grid-template-areas: var(
-      --grid-template-areas-desktop,
-      var(--grid-template-areas-tablet, var(--grid-template-areas, none))
+      --gridTemplateAreas-desktop,
+      var(--gridTemplateAreas-tablet, var(--gridTemplateAreas, initial))
     );
   }
 
-  .bxGridArea {
+  .bx_gridArea_desktop {
     grid-area: var(
-      --grid-area-desktop,
-      var(--grid-area-tablet, var(--grid-area, auto))
+      --gridArea-desktop,
+      var(--gridArea-tablet, var(--gridArea, initial))
     );
   }
 
-  .bxGridColumn {
+  .bx_gridColumn_desktop {
     grid-column: var(
-      --grid-column-desktop,
-      var(--grid-column-tablet, var(--grid-column, auto))
+      --gridColumn-desktop,
+      var(--gridColumn-tablet, var(--gridColumn, initial))
     );
   }
 
-  .bxGridRow {
+  .bx_gridRow_desktop {
     grid-row: var(
-      --grid-row-desktop,
-      var(--grid-row-tablet, var(--grid-row, auto))
+      --gridRow-desktop,
+      var(--gridRow-tablet, var(--gridRow, initial))
     );
   }
 
-  .bxGridColumnStart {
+  .bx_gridColumnStart_desktop {
     grid-column-start: var(
-      --grid-column-start-desktop,
-      var(--grid-column-start-tablet, var(--grid-column-start, auto))
+      --gridColumnStart-desktop,
+      var(--gridColumnStart-tablet, var(--gridColumnStart, initial))
     );
   }
 
-  .bxGridColumnEnd {
+  .bx_gridColumnEnd_desktop {
     grid-column-end: var(
-      --grid-column-end-desktop,
-      var(--grid-column-end-tablet, var(--grid-column-end, auto))
+      --gridColumnEnd-desktop,
+      var(--gridColumnEnd-tablet, var(--gridColumnEnd, initial))
     );
   }
 
-  .bxGridRowStart {
+  .bx_gridRowStart_desktop {
     grid-row-start: var(
-      --grid-row-start-desktop,
-      var(--grid-row-start-tablet, var(--grid-row-start, auto))
+      --gridRowStart-desktop,
+      var(--gridRowStart-tablet, var(--gridRowStart, initial))
     );
   }
 
-  .bxGridRowEnd {
+  .bx_gridRowEnd_desktop {
     grid-row-end: var(
-      --grid-row-end-desktop,
-      var(--grid-row-end-tablet, var(--grid-row-end, auto))
+      --gridRowEnd-desktop,
+      var(--gridRowEnd-tablet, var(--gridRowEnd, initial))
     );
   }
 
-  .bxGridAutoFlow {
+  .bx_gridAutoFlow_desktop {
     grid-auto-flow: var(
-      --grid-auto-flow-desktop,
-      var(--grid-auto-flow-tablet, var(--grid-auto-flow, row))
+      --gridAutoFlow-desktop,
+      var(--gridAutoFlow-tablet, var(--gridAutoFlow, initial))
     );
   }
 
-  .bxGridAutoColumns {
+  .bx_gridAutoColumns_desktop {
     grid-auto-columns: var(
-      --grid-auto-columns-desktop,
-      var(--grid-auto-columns-tablet, var(--grid-auto-columns, auto))
+      --gridAutoColumns-desktop,
+      var(--gridAutoColumns-tablet, var(--gridAutoColumns, initial))
     );
   }
 
-  .bxGridAutoRows {
+  .bx_gridAutoRows_desktop {
     grid-auto-rows: var(
-      --grid-auto-rows-desktop,
-      var(--grid-auto-rows-tablet, var(--grid-auto-rows, auto))
+      --gridAutoRows-desktop,
+      var(--gridAutoRows-tablet, var(--gridAutoRows, initial))
     );
   }
 
-  .bxGap {
-    gap: var(--gap-desktop, var(--gap-tablet, var(--gap, normal)));
+  .bx_gap_desktop {
+    gap: var(--gap-desktop, var(--gap-tablet, var(--gap, initial)));
   }
 
-  .bxTransform {
+  .bx_transform_desktop {
     transform: var(
       --transform-desktop,
-      var(--transform-tablet, var(--transform, none))
+      var(--transform-tablet, var(--transform, initial))
     );
   }
 
-  .bxTransition {
+  .bx_transition_desktop {
     transition: var(
       --transition-desktop,
-      var(--transition-tablet, var(--transition, all 0s ease 0s))
+      var(--transition-tablet, var(--transition, initial))
     );
   }
 
-  .bxOverflow {
+  .bx_overflow_desktop {
     overflow: var(
       --overflow-desktop,
-      var(--overflow-tablet, var(--overflow, visible))
+      var(--overflow-tablet, var(--overflow, initial))
     );
   }
 
-  .bxOverflowX {
+  .bx_overflowX_desktop {
     overflow-x: var(
-      --overflow-x-desktop,
-      var(--overflow-x-tablet, var(--overflow-x, visible))
+      --overflowX-desktop,
+      var(--overflowX-tablet, var(--overflowX, initial))
     );
   }
 
-  .bxOverflowY {
+  .bx_overflowY_desktop {
     overflow-y: var(
-      --overflow-y-desktop,
-      var(--overflow-y-tablet, var(--overflow-y, visible))
+      --overflowY-desktop,
+      var(--overflowY-tablet, var(--overflowY, initial))
     );
   }
 
-  .bxBoxShadow {
+  .bx_boxShadow_desktop {
     box-shadow: var(
-      --box-shadow-desktop,
-      var(--box-shadow-tablet, var(--box-shadow, none))
+      --boxShadow-desktop,
+      var(--boxShadow-tablet, var(--boxShadow, initial))
     );
   }
 
-  .bxCursor {
-    cursor: var(--cursor-desktop, var(--cursor-tablet, var(--cursor, auto)));
+  .bx_cursor_desktop {
+    cursor: var(--cursor-desktop, var(--cursor-tablet, var(--cursor, initial)));
   }
 }
