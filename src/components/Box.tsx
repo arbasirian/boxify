@@ -14,6 +14,7 @@ export const Box: React.FC<BoxProps> = ({
   style,
   as = "div",
   htmlFor,
+  hasMirror,
   ...props
 }) => {
   const { cssProps, baseProps } = getSplittedProps(props);
@@ -22,7 +23,11 @@ export const Box: React.FC<BoxProps> = ({
   const cssVariables = generateBoxStyles(cssProps);
   return (
     <Component
-      className={cx(availableClasses, className)}
+      className={cx(
+        ...availableClasses,
+        className,
+        hasMirror && styles.bx_hasMirror
+      )}
       style={{
         ...style,
         ...cssVariables,

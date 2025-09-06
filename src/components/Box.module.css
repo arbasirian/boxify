@@ -284,10 +284,6 @@
   cursor: var(--cursor, initial);
 }
 
-/* Mobile styles (320px+) */
-@media (max-width: 767px) {
-}
-
 /* Tablet styles (768px+) */
 @media (min-width: 768px) {
   .bx_display_tablet {

@@ -12,11 +12,7 @@ export const getSplittedProps = (
   props: BoxProps
 ): { cssProps: BoxCssProps; baseProps: BoxNonCssProps } => {
   let cssProps: Partial<BoxCssProps> = {};
-  let baseProps: BoxNonCssProps = {
-    children: props.children,
-    className: props.className,
-    hasMirror: props.hasMirror,
-  };
+  let baseProps: BoxNonCssProps = {};
   const { mobile, tablet, desktop, ...restProps } = props;
 
   Object.keys(restProps).forEach((key) => {
@@ -76,18 +72,22 @@ export const generateBoxCssClasses = (
   const availableClasses = new Set<string>();
 
   Object.entries(props).forEach(([key, value]) => {
-    if (key === "mobile" || key === "tablet" || key === "desktop") {
-      generateBaseCssClasses(
-        availableClasses,
-        styles,
-        value as BoxCssProps,
-        key as Breakpoint
-      );
-    } else {
-      availableClasses.add(styles[`bx_${key}`]);
+    if (value) {
+      if (key === "mobile" || key === "tablet" || key === "desktop") {
+        generateBaseCssClasses(
+          availableClasses,
+          styles,
+          value as BoxCssProps,
+          key as Breakpoint
+        );
+      } else {
+        const className = styles[`bx_${key}`];
+        if (className) {
+          availableClasses.add(className);
+        }
+      }
     }
   });
-
   return [...availableClasses];
 };
 
