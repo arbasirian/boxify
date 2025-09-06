@@ -405,10 +405,10 @@ Responsive props maintain full type safety:
 
 ### Bundle Size
 
-- **CJS**: ~6.3 KB
-- **ESM**: ~6.1 KB
+- **CJS**: ~17.5 KB (~4.1 KB gzipped)
+- **ESM**: ~17.5 KB (~4.1 KB gzipped)
 - **Tree Shaking**: Excellent support
-- **CSS**: Minimal and optimized
+- **CSS**: ~21.4 KB (~3.9 KB gzipped)
 
 ### Build Optimization
 

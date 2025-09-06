@@ -212,6 +212,31 @@ import styles from "./MyComponent.module.css";
 </Box>;
 ```
 
+## ⚡ Performance
+
+### Bundle Size
+
+- **JavaScript**: ~17.5 KB → **4.1 KB gzipped**
+- **CSS**: ~21.4 KB → **3.9 KB gzipped**
+- **Total**: **~8.0 KB gzipped**
+
+### Why It's Fast
+
+- **Zero Runtime**: All styling via CSS custom properties
+- **No JavaScript**: Pure CSS-based responsive design
+- **Tree Shaking**: Only imports what you use
+- **Optimized CSS**: Minified and merged media queries
+
+### Performance Commands
+
+```bash
+# Check bundle sizes
+npm run size
+
+# Check gzipped sizes
+npm run size:gzip
+```
+
 ## 🔍 Troubleshooting
 
 ### Common Issues

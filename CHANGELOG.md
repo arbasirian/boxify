@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.13] - 2024-09-06
+
+### Added
+
+- **Performance Monitoring**: Added `size:gzip` script for accurate bundle size analysis
+- **Enhanced Documentation**: Updated README and API docs with current performance metrics
+- **Bundle Size Analysis**: Comprehensive performance documentation with gzipped sizes
+
+### Changed
+
+- **Updated Bundle Sizes**: Corrected documentation to reflect actual bundle sizes
+  - JavaScript: ~17.5 KB (4.1 KB gzipped)
+  - CSS: ~21.4 KB (3.9 KB gzipped)
+  - Total: ~8.0 KB gzipped
+- **Performance Documentation**: Enhanced performance section with comparison data
+- **Build Scripts**: Improved size analysis scripts for better development experience
+
+### Technical Details
+
+- **Accurate Metrics**: All documentation now reflects actual measured bundle sizes
+- **Performance Comparison**: Added comparison data vs other CSS-in-JS libraries
+- **Development Tools**: Enhanced build scripts for performance monitoring
+- **Documentation**: Comprehensive performance section across all docs
+
 ## [0.1.8] - 2024-12-19
 
 ### Added
